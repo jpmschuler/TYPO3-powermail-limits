@@ -119,12 +119,7 @@ jobs:
           git config user.email "<>"
       - name: Publish
         run: |
-          git checkout ${CI_COMMIT_BRANCH}
           export GIT_LASTTAG="$(git describe --tags --abbrev=0)"
           export CHANGELOG="$(git log ${GIT_LASTTAG}...HEAD --abbrev=0 --format="%s%n%b")"
-          composer run version:set ${{ needs.calculate-version.outputs.majorMinorPatch }}
-          git commit ext_emconf.php -m "[RELEASE] Releasing v${{ needs.calculate-version.outputs.majorMinorPatch }}" || true
           git tag v${GitVersion_MajorMinorPatch} -m "[RELEASE] Releasing v${{ needs.calculate-version.outputs.majorMinorPatch }}" -m "" -m "Changes since last release:" -m "${CHANGELOG}"
-          git checkout ${GIT_RELEASE_BRANCH:=release} || true
-          git merge v${{ needs.calculate-version.outputs.majorMinorPatch }} || true
-          git push --all --follow-tags
+          git push origin v${GitVersion_MajorMinorPatch}
