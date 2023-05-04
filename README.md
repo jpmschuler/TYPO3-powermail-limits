@@ -1,4 +1,4 @@
-[![CI](https://github.com/jpmschuler/powermail-limits/actions/workflows/ci.yml/badge.svg)](https://github.com/jpmschuler/powermail-limits/actions/workflows/ci.yml)
+[![CI](https://github.com/jpmschuler/TYPO3-powermail-limits/actions/workflows/ci.yml/badge.svg)](https://github.com/jpmschuler/TYPO3-powermail-limits/actions/workflows/ci.yml)
 ![PHP-v](https://shields.io/packagist/php-v/jpmschuler/powermail-limits)
 ![Packagist](https://shields.io/packagist/v/jpmschuler/powermail-limits)
 
@@ -11,7 +11,7 @@ This extension allows you to set a submission limit for a TYPO3 EXT:powermail fo
 - EXT:powermail ^10
 
 # Installation
-via composer `jpmschuler/powermail-limits`
+`composer req jpmschuler/powermail-limits`, no legacy install available
 
 # What it does
 A form gets 3 new fields
