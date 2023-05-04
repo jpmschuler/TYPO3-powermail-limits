@@ -2,14 +2,16 @@
 
 namespace Jpmschuler\PowermailLimits\SignalSlot;
 
+use Jpmschuler\PowermailLimits\Domain\Model\FormWithSubmissionLimit;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class MailManipulation
 {
     public function sendTemplateEmailBeforeSend($message, $email, $originalService)
     {
+        /** @var FormWithSubmissionLimit $form */
         $form = $originalService->getMail()->getForm();
-        if ($form->isNewSubmissionForWaitlist()) {
+        if ($form->isNewSubmissionForWaitlistMailManipulation()) {
             $subjectPrefix = LocalizationUtility::translate(
                 'mail.waitinglistsubmission.subjectprefix',
                 'powermail_limits'
@@ -28,10 +30,11 @@ class MailManipulation
 
     public function createEmailBodyBeforeRender($standaloneView, $email, $originalService)
     {
+        /** @var FormWithSubmissionLimit $form */
         $form = $originalService->getMail()->getForm();
         $isReceiverMail = $email['template'] == 'Mail/ReceiverMail';
 
-        if ($form->isNewSubmissionForWaitlist()) {
+        if ($form->isNewSubmissionForWaitlistMailManipulation()) {
             $bodyPrefixHeader = LocalizationUtility::translate(
                 'mail.waitinglistsubmission.bodyprefix.header',
                 'powermail_limits'

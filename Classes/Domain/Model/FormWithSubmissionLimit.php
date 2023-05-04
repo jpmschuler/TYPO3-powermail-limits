@@ -60,10 +60,11 @@ class FormWithSubmissionLimit extends Form
         return false;
     }
 
-    public function isNewSubmissionForWaitlist(): bool
+    public function isNewSubmissionForWaitlistProcessor(): bool
     {
         if ($this->submissionlimit) {
-            if ($this->getCurrentsubmissions() > $this->submissionlimit) {
+            // check for +1 because in DataProcessor we didn't save the mail yet
+            if (($this->getCurrentsubmissions() + 1) > $this->submissionlimit) {
                 if ($this->haswaitlist) {
                     return true;
                 }
@@ -72,6 +73,22 @@ class FormWithSubmissionLimit extends Form
         return false;
     }
 
+    public function isNewSubmissionForWaitlistMailManipulation(): bool
+    {
+        if ($this->submissionlimit) {
+            // check for +0 because in Mailmanipulation we did save the mail
+            if (($this->getCurrentsubmissions()) > $this->submissionlimit) {
+                if ($this->haswaitlist) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @return bool true, if either normal submission or waiting list submission
+     */
     public function isNewSubmissionValid(): bool
     {
         if ($this->submissionlimit) {

@@ -23,7 +23,7 @@ class SubmissionLimitDataProcessor extends AbstractDataProcessor
             $field->setType('input');
             $field->setTitle($label);
             $answer->_setProperty('name', $label);
-            $answer->_setProperty('value', print_r($data, true));
+            $answer->_setProperty('value', $data);
             $answer->setValueType(0);
             $answer->setField($field);
             $this->getMail()->addAnswer($answer);
@@ -33,7 +33,7 @@ class SubmissionLimitDataProcessor extends AbstractDataProcessor
     public function addFieldsDataProcessor(): void
     {
         $mail = $this->getMail();
-        /* @var $form FormWithSubmissionLimit */
+        /** @var FormWithSubmissionLimit $form */
         $form = $mail->getForm();
 
         if ($form->submissionlimit) {
@@ -44,11 +44,18 @@ class SubmissionLimitDataProcessor extends AbstractDataProcessor
                 'powermail_limits'
             );
 
-            if ($form->isNewSubmissionForWaitlist()) {
+            if ($form->isNewSubmissionForWaitlistProcessor()) {
                 $addToOutput[$labelSubmissionLimit] = LocalizationUtility::translate(
                     'form.submissionstatus.waitinglist',
                     'powermail_limits'
                 );
+
+                $subjectPrefix = LocalizationUtility::translate(
+                    'mail.waitinglistsubmission.subjectprefix',
+                    'powermail_limits'
+                );
+                $subject = $subjectPrefix . $mail->getSubject();
+                $mail->setSubject($subject);
             } elseif ($form->isNewSubmissionValid()) {
                 $addToOutput[$labelSubmissionLimit] = LocalizationUtility::translate(
                     'form.submissionstatus.valid',
@@ -59,6 +66,7 @@ class SubmissionLimitDataProcessor extends AbstractDataProcessor
                     'form.submissionstatus.invalid',
                     'powermail_limits'
                 );
+                $mail->setHidden(true);
             }
             $this->addNewValuesToMail($addToOutput);
         }

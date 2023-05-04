@@ -1,0 +1,1 @@
+@import 'EXT:powermail_limits/Configuration/TypoScript/setup.typoscript'

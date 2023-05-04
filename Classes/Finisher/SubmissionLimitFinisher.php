@@ -3,6 +3,11 @@
 namespace Jpmschuler\PowermailLimits\Finisher;
 
 use In2code\Powermail\Finisher\AbstractFinisher;
+use Jpmschuler\PowermailLimits\Domain\Model\FormWithSubmissionLimit;
+use Symfony\Component\Mime\Address;
+use TYPO3\CMS\Core\Mail\MailMessage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Class DoSomethingFinisher
@@ -12,47 +17,27 @@ class SubmissionLimitFinisher extends AbstractFinisher
     public function checkSubmissionLimitFinisher(): void
     {
         $mail = $this->getMail();
+        /** @var FormWithSubmissionLimit $form */
         $form = $mail->getForm();
-        if ($form->isNewSubmissionForWaitlist()) {
-            $this->addOnlyWaitingListWarningToAnswerPage();
-            $this->addOnlyWaitingListWarningToMail();
-        } elseif ($form->isNewSubmissionValid()) {
-        } else {
-            $this->addNoSlotWarningToAnswerPage();
-            $this->addNoSlotWarningToMail();
-        }
 
         if ($form->isLastSubmissionAllowed()) {
-            die('mail to editor for list full not implemented');
+            $recipient = new Address($mail->getReceiverMail());
+            $subject = sprintf(
+                LocalizationUtility::translate('mail.submissionlimitreached.subject', 'powermail_limits'),
+                $form->getTitle()
+            );
+            $body = sprintf(
+                LocalizationUtility::translate('mail.submissionlimitreached.body', 'powermail_limits'),
+                $form->getTitle()
+            );
+
+            $emailLimitReached = GeneralUtility::makeInstance(MailMessage::class);
+            $emailLimitReached
+                ->from($recipient)
+                ->to($recipient)
+                ->subject($subject)
+                ->text($body)
+                ->send();
         }
-    }
-
-    public function addNoSlotWarningToAnswerPage()
-    {
-    }
-
-    public function addNoSlotWarningToMail()
-    {
-        $mail = $this->getMail();
-        $subjectPrefix = 'No Slot available - ';
-        $subject = $mail->getSubject();
-        $mail->setSubject($subjectPrefix . $subject);
-        $body = '<p>Attention: no slot available. We received your registration, however the last slot was already taken and there is no waiting list.</p>';
-        $mail->setSubject($body);
-    }
-
-    public function addOnlyWaitingListWarningToAnswerPage()
-    {
-    }
-
-    public function addOnlyWaitingListWarningToMail()
-    {
-        $mail = $this->getMail();
-        $subjectPrefix = 'Only Waiting List - ';
-        $subject = $mail->getSubject();
-        $mail->setSubject($subjectPrefix . $subject);
-        $bodyPrefix = '<p>Attention: registration for waiting list only</p>';
-        $body = $mail->getSubject();
-        $mail->setSubject($bodyPrefix . $body);
     }
 }

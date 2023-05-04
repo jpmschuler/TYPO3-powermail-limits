@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns:t3="http://typo3.org/schemas/xliff" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" original="" datatype="plaintext" date="2023-05-04T03:34:53+02:00">
+	<file source-language="en" target-language="de" original="" datatype="plaintext" date="2023-05-04T10:35:25+02:00">
 		<body>
 			<trans-unit id="form.nosubmissionpossible.header" resname="form.nosubmissionpossible.header">
 				<source>No submissions possible</source>
@@ -109,6 +109,14 @@
 			<trans-unit id="mail.invalidsubmission.subjectprefix" resname="mail.invalidsubmission.subjectprefix">
 				<source>No slot available - </source>
 				<target>Kein Platz verfügbar - </target>
+			</trans-unit>
+			<trans-unit id="mail.submissionlimitreached.body" resname="mail.submissionlimitreached.body">
+				<source>The form %s has a submission limit which has been reached. If there is a waiting list in place this will now be filled, else all further submissions are prevented.</source>
+				<target>Das Formular %s hat eine Teilnahmebeschränkung konfiguriert die jetzt erreicht wurde. Falls Sie eine Warteliste konfiguriert haben wird diese nun gefüllt, alternativ werden weitere Formularübermittlungen verhindert.</target>
+			</trans-unit>
+			<trans-unit id="mail.submissionlimitreached.subject" resname="mail.submissionlimitreached.subject">
+				<source>Submission limit reached for form %s</source>
+				<target>Teilnahmebeschränkung erreicht für Formular %s</target>
 			</trans-unit>
 			<trans-unit id="mail.waitinglistsubmission.bodyprefix.header" resname="mail.waitinglistsubmission.bodyprefix.header">
 				<source>Attention: registration for waiting list only</source>
