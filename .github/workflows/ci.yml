@@ -20,7 +20,7 @@ jobs:
         with:
           php-version: "${{ matrix.php-version }}"
           coverage: none
-          tools: composer:v2.3
+          tools: composer:v2.4
       - name: "Run PHP lint"
         run: "composer lint:php"
     strategy:
