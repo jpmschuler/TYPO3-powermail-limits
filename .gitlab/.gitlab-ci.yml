@@ -1,0 +1,50 @@
+variables:
+  npm_config_cache: $CI_PROJECT_DIR/.cache/npm/
+  npm_config_store_dir:  $CI_PROJECT_DIR/.cache/npm-store/
+  COMPOSER_CACHE_DIR: $CI_PROJECT_DIR/.cache/composer/
+  YARN_CACHE_FOLDER: $CI_PROJECT_DIR/.cache/yarn/
+  GIT_STRATEGY: pull
+  CI_JOB_SKIP_EXIT_CODE: 2
+
+stages:
+  - codequality
+  - build
+  - test
+  - deploy
+
+
+default:
+  image:
+    name: thecodingmachine/php:7.4-v4-slim-cli
+  cache:
+    key: package-manager-cache
+    paths:
+      - $CI_PROJECT_DIR/.cache/
+
+.rules_default:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop" && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+    - if: '$CI_COMMIT_BRANCH=~ /^feature(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+    - if: '$CI_COMMIT_BRANCH=~ /^issue(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+    - if: '$CI_COMMIT_BRANCH=~ /^task(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+    - if: '$CI_COMMIT_BRANCH=~ /^bugfix(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+    - if: '$CI_COMMIT_BRANCH=~ /^breaking(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+
+.rules_defaultandrelease:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop" && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+    - if: '$CI_COMMIT_BRANCH == "release" && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+    - if: '$CI_COMMIT_BRANCH=~ /^feature(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+    - if: '$CI_COMMIT_BRANCH=~ /^issue(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+    - if: '$CI_COMMIT_BRANCH=~ /^task(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+    - if: '$CI_COMMIT_BRANCH=~ /^bugfix(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+    - if: '$CI_COMMIT_BRANCH=~ /^breaking(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+
+include:
+  - '/.gitlab/005.bootstrap.yml'
+  - '/.gitlab/010.codequality.lint.yml'
+  - '/.gitlab/020.codequality.deprecations.yml'
+  - '/.gitlab/040.test.prebuild.yml'
+  - '/.gitlab/300.git-publish.yml'
+  - '/.gitlab/800.publishToGitlab.yml'
+  - '/.gitlab/900.notify.yml'

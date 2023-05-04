@@ -1,0 +1,16 @@
+notify:pushover:newTag:
+  tags:
+    - access-to-www
+  stage: .post
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+.\d+.\d+/'
+  image: curlimages/curl:latest
+  allow_failure: true
+  variables:
+    PUSHOVER_API_TARGET: "https://api.pushover.net/1/messages.json"
+  script:
+    - export PUSHOVER_TITLE="${CI_PROJECT_TITLE} new tag ${CI_COMMIT_TAG}"
+    - export PUSHOVER_MESSAGE="${CI_COMMIT_TAG_MESSAGE}"
+    - if [ -z ${PUSHOVER_API_TOKEN+x} ]; then echo "PUSHOVER_API_TOKEN not found"; exit 1; fi
+    - if [ -z ${PUSHOVER_USER_KEY+x} ]; then echo "PUSHOVER_USER_KEY not found"; exit 1; fi
+    - curl -s --form-string "token=${PUSHOVER_API_TOKEN}" --form-string "user=${PUSHOVER_USER_KEY}" --form-string "message=${PUSHOVER_MESSAGE}" --form-string "title=${PUSHOVER_TITLE}" --form-string "url=${PUSHOVER_URL}" --form-string "url_title=${PUSHOVER_URL_TITLE}"  ${PUSHOVER_API_TARGET}

@@ -1,0 +1,33 @@
+deprecations:rector:
+  image:
+    name: thecodingmachine/php:7.4-v4-cli
+  cache: {}
+  rules:
+    - !reference [.rules_default, rules]
+  needs: ["bootstrap:composer"]
+  stage: codequality
+  allow_failure: true
+  script:
+    - composer run rector:dry-run:ci
+  artifacts:
+    paths:
+      - "report.*"
+    expire_in: 7 days
+    reports:
+      junit: "report.*"
+
+deprecations:typo3scan:
+  cache: {}
+  rules:
+    - !reference [.rules_default, rules]
+  needs: ["bootstrap:composer"]
+  stage: codequality
+  allow_failure: true
+  script:
+    - composer run test:deprecations:ci
+  artifacts:
+    paths:
+      - "report.*"
+    expire_in: 7 days
+    reports:
+      junit: "report.*"

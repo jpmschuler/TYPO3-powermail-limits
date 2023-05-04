@@ -1,0 +1,10 @@
+branches:
+  develop:
+    regex: ^dev(elop)?(ment)?$
+    increment: Patch
+  main:
+    regex: ^main$
+    increment: Patch
+major-version-bump-message: '\[(BREAKING|MAJOR)\]'
+minor-version-bump-message: '\[(FEATURE|ADDITION)\]'
+patch-version-bump-message: '\[(TASK|BUGFIX|REGRESSION|LINT)\]'

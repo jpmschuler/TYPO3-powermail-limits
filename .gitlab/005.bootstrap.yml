@@ -1,0 +1,26 @@
+bootstrap:composer:
+  stage: .pre
+  rules:
+    - !reference [.rules_defaultandrelease, rules]
+  cache:
+    key: composer-cache
+    paths:
+      - .cache
+  before_script:
+    - eval $(ssh-agent -s); echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null; mkdir -p ~/.ssh; chmod 700 ~/.ssh
+    - echo -e "Host ${CI_SERVER_HOST}\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  script:
+    - composer install --ignore-platform-reqs --ansi --no-interaction --no-progress
+  artifacts:
+    expire_in: 2h
+    when: on_success
+    paths:
+      - vendor/
+      - .Build/
+      - .editorconfig
+      - .php-cs-fixer.php
+      - .phpcs.xml
+      - .phpstan.constants.php
+      - phpstan.neon
+      - rector.php
+      - typoscript-lint.yml

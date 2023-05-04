@@ -1,0 +1,28 @@
+plugin.tx_powermail {
+  view {
+    templateRootPaths {
+      50 = EXT:powermail_limits/Resources/Private/Templates/
+    }
+
+    partialRootPaths {
+      50 = EXT:powermail_limits/Resources/Private/Partials/
+    }
+
+    layoutRootPaths {
+      50 = EXT:powermail_limits/Resources/Private/Layouts/
+    }
+  }
+}
+
+plugin.tx_powermail.settings.setup {
+  dataProcessors {
+    90 {
+      class = Jpmschuler\PowermailLimits\DataProcessor\SubmissionLimitDataProcessor
+    }
+  }
+  finishers {
+    90 {
+      class = Jpmschuler\PowermailLimits\Finisher\SubmissionLimitFinisher
+    }
+  }
+}

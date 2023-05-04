@@ -1,0 +1,11 @@
+name: Testing and SemVer-Releasing stable versions as tags
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+
+jobs:
+  test-and-semver:
+    uses: jpmschuler/typo3-extdev-helper/.github/workflows/test-and-semver.yml@main

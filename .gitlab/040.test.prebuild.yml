@@ -1,0 +1,11 @@
+test:preBuild:
+  stage: test
+  cache: {}
+  rules:
+    - !reference [.rules_default, rules]
+  needs: ["bootstrap:composer","lint:php","lint:php-cs-fixer"]
+  script:
+    - composer run test
+  artifacts:
+    reports:
+      junit: "phpunit-report.xml"

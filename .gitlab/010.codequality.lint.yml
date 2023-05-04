@@ -1,0 +1,97 @@
+lint:php:
+  cache: {}
+  rules:
+    - !reference [.rules_default, rules]
+  needs: []
+  image: thecodingmachine/php:$PHPVERSION-v4-slim-cli
+  stage: codequality
+  parallel:
+    matrix:
+      - PHPVERSION: ['7.4', '8.0', '8.1']
+  script:
+    - composer run lint:php
+
+lint:php-cs-fixer:
+  cache: {}
+  rules:
+    - !reference [.rules_default, rules]
+  stage: codequality
+  needs: ["bootstrap:composer"]
+  script:
+    - cat .php-cs-fixer.php
+    - composer run lint:php-cs-fixer:dry-run
+
+lint:phpcpd:
+  cache: {}
+  rules:
+    - !reference [.rules_default, rules]
+  stage: codequality
+  allow_failure: true
+  needs: ["bootstrap:composer"]
+  script:
+    - composer run lint:phpcpd
+
+lint:phpcs:
+  cache: {}
+  rules:
+    - !reference [.rules_default, rules]
+  stage: codequality
+  allow_failure: true
+  needs: ["bootstrap:composer"]
+  script:
+    - composer run lint:phpcs:dry-run:ci
+  artifacts:
+    when: always
+    paths:
+      - "report.*"
+    expire_in: 7 days
+    reports:
+      codequality: "report.*"
+
+lint:phpstan:
+  cache: {}
+  rules:
+    - !reference [.rules_default, rules]
+  needs: ["bootstrap:composer"]
+  stage: codequality
+  allow_failure: true
+  script:
+    - composer run lint:phpstan:ci
+  artifacts:
+    when: always
+    paths:
+      - "report.*"
+    expire_in: 7 days
+    reports:
+      codequality: "report.*"
+
+lint:xliff:
+  tags:
+    - access-to-www
+  image: pipelinecomponents/xmllint:latest
+  cache: {}
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop" && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+      changes:
+        - Resources/Private/Language/**.xlf
+    - if: '$CI_COMMIT_BRANCH=~ /^feature(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+      changes:
+        - Resources/Private/Language/**.xlf
+    - if: '$CI_COMMIT_BRANCH=~ /^issue(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+      changes:
+        - Resources/Private/Language/**.xlf
+    - if: '$CI_COMMIT_BRANCH=~ /^task(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+      changes:
+        - Resources/Private/Language/**.xlf
+    - if: '$CI_COMMIT_BRANCH=~ /^bugfix(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+      changes:
+        - Resources/Private/Language/**.xlf
+    - if: '$CI_COMMIT_BRANCH=~ /^breaking(.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[RELEASE\](.?)*/ && $CI_COMMIT_MESSAGE !~ /^\[TASK\] Set version (.?)*/'
+      changes:
+        - Resources/Private/Language/**.xlf
+  needs: ["bootstrap:composer"]
+  stage: codequality
+  allow_failure: true
+  script:
+    - wget -q -O .Build/xliff-core-1.2-strict.xsd https://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd
+    - xmllint --schema .Build/xliff-core-1.2-strict.xsd --noout $(find Resources/Private/Language -name '*.xlf')
