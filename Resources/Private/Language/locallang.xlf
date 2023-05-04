@@ -99,7 +99,7 @@
 				<source>Waiting list registration - </source>
 			</trans-unit>
 			<trans-unit id="tca.haswaitlist" resname="tca.haswaitlist">
-				<source>has waitlist</source>
+				<source>has waiting list</source>
 			</trans-unit>
 			<trans-unit id="tca.haswaitlist.description" resname="tca.haswaitlist.description">
 				<source>Make the form available after the limit to allow a waitlist</source>
