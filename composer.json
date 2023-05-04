@@ -45,7 +45,7 @@
     },
     "extra": {
         "codequality": {
-            "phpstan-level": "5",
+            "phpstan-level": "6",
             "typo3-deprecations": "11"
         },
         "typo3/cms": {
@@ -128,21 +128,9 @@
             "@pretest:deprecations",
             "@php typo3scan scan --target $(composer config extra.codequality.typo3-deprecations 2> /dev/null || echo 11) -- .Build/$(composer config extra.typo3/cms.extension-key) || true"
         ],
-        "test:deprecations:10LTS:ci": [
-            "@pretest:deprecations",
-            "@php typo3scan scan --target 10 --format junit -- .Build/$(composer config extra.typo3/cms.extension-key) > report.$(composer config extra.typo3/cms.extension-key)-deprecations-10LTS.xml || true"
-        ],
         "test:deprecations:11LTS:ci": [
             "@pretest:deprecations",
             "@php typo3scan scan --target 11 --format junit -- .Build/$(composer config extra.typo3/cms.extension-key) > $(composer config extra.typo3/cms.extension-key)-deprecations-11LTS.xml || true"
-        ],
-        "test:deprecations:8LTS:ci": [
-            "@pretest:deprecations",
-            "@php typo3scan scan --target 8 --format junit -- .Build/$(composer config extra.typo3/cms.extension-key) > $(composer config extra.typo3/cms.extension-key)-deprecations-8LTS.xml || true"
-        ],
-        "test:deprecations:9LTS:ci": [
-            "@pretest:deprecations",
-            "@php typo3scan scan --target 9 --format junit -- .Build/$(composer config extra.typo3/cms.extension-key) > report.$(composer config extra.typo3/cms.extension-key)-deprecations-9LTS.xml || true"
         ],
         "test:deprecations:ci": [
             "@pretest:deprecations",

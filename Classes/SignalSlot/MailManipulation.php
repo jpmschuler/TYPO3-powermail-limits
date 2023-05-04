@@ -2,13 +2,22 @@
 
 namespace Jpmschuler\PowermailLimits\SignalSlot;
 
+use In2code\Powermail\Domain\Service\Mail\SendMailService;
 use Jpmschuler\PowermailLimits\Domain\Model\FormWithSubmissionLimit;
+use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class MailManipulation
 {
-    public function sendTemplateEmailBeforeSend($message, $email, $originalService)
-    {
+    /**
+     * @param array<string, mixed> $email
+     */
+    public function sendTemplateEmailBeforeSend(
+        MailMessage $message,
+        array $email,
+        SendMailService $originalService
+    ): void {
         /** @var FormWithSubmissionLimit $form */
         $form = $originalService->getMail()->getForm();
         if ($form->isNewSubmissionForWaitlistMailManipulation()) {
@@ -28,8 +37,14 @@ class MailManipulation
         }
     }
 
-    public function createEmailBodyBeforeRender($standaloneView, $email, $originalService)
-    {
+    /**
+     * @param array<string, mixed> $email
+     */
+    public function createEmailBodyBeforeRender(
+        StandaloneView $standaloneView,
+        array $email,
+        SendMailService $originalService
+    ): void {
         /** @var FormWithSubmissionLimit $form */
         $form = $originalService->getMail()->getForm();
         $isReceiverMail = $email['template'] == 'Mail/ReceiverMail';

@@ -13,6 +13,9 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  */
 class SubmissionLimitDataProcessor extends AbstractDataProcessor
 {
+    /**
+     * @param array<string, mixed> $newData
+     */
     protected function addNewValuesToMail(array $newData): void
     {
         foreach ($newData as $label => $data) {
