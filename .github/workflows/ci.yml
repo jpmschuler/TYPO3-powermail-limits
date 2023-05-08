@@ -78,7 +78,7 @@ jobs:
   calculate-version:
     name: "calculating next SemVer"
     runs-on: ubuntu-20.04
-    needs: [php-lint,xliff-lint,php-codequality,calculate-version]
+    needs: [php-lint,xliff-lint,php-codequality]
     outputs:
       majorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }} # To use an output in another job, you have to map it to a job output.
     steps:
