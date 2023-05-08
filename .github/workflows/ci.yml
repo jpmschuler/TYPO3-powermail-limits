@@ -106,8 +106,6 @@ jobs:
 
   git-publish:
     name: "tag new release and push to release branch"
-    with:
-      token: ${{ secrets.GITHUB_PAT }}
     runs-on: ubuntu-20.04
     needs: [php-lint,xliff-lint,php-codequality,calculate-version]
     steps:
@@ -120,8 +118,6 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
       - name: Publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_PAT }}
         run: |
           export GIT_LASTTAG="$(git describe --tags --abbrev=0)"
           export CHANGELOG="$(git log ${GIT_LASTTAG}...HEAD --abbrev=0 --format="%s%n%b")"
