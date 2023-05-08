@@ -78,6 +78,7 @@ jobs:
   calculate-version:
     name: "calculating next SemVer"
     runs-on: ubuntu-20.04
+    needs: [php-lint,xliff-lint,php-codequality,calculate-version]
     outputs:
       majorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }} # To use an output in another job, you have to map it to a job output.
     steps:
@@ -103,16 +104,6 @@ jobs:
           echo "Minor: ${{ steps.gitversion.outputs.minor }}"
           echo "Patch: ${{ steps.gitversion.outputs.patch }}"
           echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
-
-  git-publish:
-    name: "tag new release and push to release branch"
-    runs-on: ubuntu-20.04
-    needs: [php-lint,xliff-lint,php-codequality,calculate-version]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: setup git config
         run: |
           git config user.name "GitHub Actions Bot"
