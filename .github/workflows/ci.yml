@@ -104,34 +104,26 @@ jobs:
           echo "Patch: ${{ steps.gitversion.outputs.patch }}"
           echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
 
-  changelog:
-    runs-on: ubuntu-latest
-    outputs:
-      changelog: ${{ steps.changelog.outputs.changelog }}
+  git-publish:
+    name: "tag new release and push to release branch"
+    with:
+      token: ${{ secrets.GITHUB_PAT }}
+    runs-on: ubuntu-20.04
+    needs: [php-lint,xliff-lint,php-codequality,calculate-version]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: write changelog to env
-        id: changelog
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: Publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_PAT }}
         run: |
           export GIT_LASTTAG="$(git describe --tags --abbrev=0)"
           export CHANGELOG="$(git log ${GIT_LASTTAG}...HEAD --abbrev=0 --format="%s%n%b")"
-          echo "$CHANGELOG" >> "$GITHUB_OUTPUT"
-
-
-  git-publish:
-    name: "tag new release and push to release branch"
-    needs: [php-lint,xliff-lint,php-codequality,calculate-version,get-changelog]
-    uses: EndBug/latest-tag@latest
-    with:
-      # You can change the name of the tag or branch with this input.
-      # Default: 'latest'
-      ref: ${{jobs.calculate-version.outputs.majorMinorPatch}}
-
-      # If a description is provided, the action will use it to create an annotated tag. If none is given, the action will create a lightweight tag.
-      # Default: ''
-      description: "${{jobs.changelog.outputs.changelog}}"
-
-
+          git tag v${GitVersion_MajorMinorPatch} -m "[RELEASE] Releasing v${{ needs.calculate-version.outputs.majorMinorPatch }}" -m "" -m "Changes since last release:" -m "${CHANGELOG}"
+          git push origin v${GitVersion_MajorMinorPatch}
