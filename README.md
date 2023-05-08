@@ -1,5 +1,6 @@
 [![CI](https://github.com/jpmschuler/TYPO3-powermail-limits/actions/workflows/ci.yml/badge.svg)](https://github.com/jpmschuler/TYPO3-powermail-limits/actions/workflows/ci.yml)
 ![PHP-v](https://shields.io/packagist/php-v/jpmschuler/powermail-limits)
+[![TYPO3 V11](https://img.shields.io/badge/TYPO3-11-orange.svg)](https://get.typo3.org/version/11)
 ![Packagist](https://shields.io/packagist/v/jpmschuler/powermail-limits)
 
 # EXT:powermail_limits
