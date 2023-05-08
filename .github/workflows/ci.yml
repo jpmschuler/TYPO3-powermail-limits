@@ -90,7 +90,7 @@ jobs:
         uses: gittools/actions/gitversion/setup@v0
         with:
           versionSpec: '5.x'
-      - name: Determine Version
+      - name: Determine GitVersion
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0
         with:
@@ -104,14 +104,13 @@ jobs:
           echo "Minor: ${{ steps.gitversion.outputs.minor }}"
           echo "Patch: ${{ steps.gitversion.outputs.patch }}"
           echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
-      - name: setup git config
+      - name: Set Git User and Mail
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-      - name: Publish
+      - name: Create new tag
         run: |
           export GIT_LASTTAG="$(git describe --tags --abbrev=0)"
           export CHANGELOG="$(git log ${GIT_LASTTAG}...HEAD --abbrev=0 --format="%s%n%b")"
-          export TAGMSG="[RELEASE] Releasing v${GitVersion_MajorMinorPatch}\n\nChanges since last release:\n${CHANGELOG}"
-          git tag v${GitVersion_MajorMinorPatch} -m "${TAGMSG}"
+          git tag v${GitVersion_MajorMinorPatch} -m "[RELEASE] Releasing v${GitVersion_MajorMinorPatch}" -m "" -m "Changes since last release:" -m "${CHANGELOG}"
           git push origin v${GitVersion_MajorMinorPatch}
