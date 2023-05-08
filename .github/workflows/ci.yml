@@ -78,7 +78,7 @@ jobs:
   calculate-version:
     name: "calculating next SemVer"
     runs-on: ubuntu-20.04
-    needs: [php-lint,xliff-lint,php-codequality]
+    needs: [ php-lint,xliff-lint,php-codequality ]
     outputs:
       majorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }} # To use an output in another job, you have to map it to a job output.
     steps:
@@ -91,7 +91,7 @@ jobs:
         with:
           versionSpec: '5.x'
       - name: Determine Version
-        id:   gitversion
+        id: gitversion
         uses: gittools/actions/gitversion/execute@v0
         with:
           useConfigFile: true
@@ -112,5 +112,6 @@ jobs:
         run: |
           export GIT_LASTTAG="$(git describe --tags --abbrev=0)"
           export CHANGELOG="$(git log ${GIT_LASTTAG}...HEAD --abbrev=0 --format="%s%n%b")"
-          git tag v${GitVersion_MajorMinorPatch} -m "[RELEASE] Releasing v${{ needs.calculate-version.outputs.majorMinorPatch }}" -m "" -m "Changes since last release:" -m "${CHANGELOG}"
+          export TAGMSG="[RELEASE] Releasing v${GitVersion_MajorMinorPatch}\n\nChanges since last release:\n${CHANGELOG}"
+          git tag v${GitVersion_MajorMinorPatch} -m "${TAGMSG}"
           git push origin v${GitVersion_MajorMinorPatch}
