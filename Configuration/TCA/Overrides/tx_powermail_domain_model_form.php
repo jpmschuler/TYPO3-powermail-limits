@@ -5,8 +5,8 @@ defined('TYPO3') || die();
 $formsTca = [
     'submissionlimit' => [
         'exclude' => false,
-        'label' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:powermail.tca.submissionlimit',
-        'description' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:powermail.tca.submissionlimit.description',
+        'label' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:tca.submissionlimit',
+        'description' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:tca.submissionlimit.description',
         'config' => [
             'type' => 'input',
             'size' => 5,
@@ -16,8 +16,8 @@ $formsTca = [
     ],
     'haswaitlist' => [
         'exclude' => false,
-        'label' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:powermail.tca.haswaitlist',
-        'description' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:powermail.tca.haswaitlist.description',
+        'label' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:tca.haswaitlist',
+        'description' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:tca.haswaitlist.description',
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
@@ -30,8 +30,8 @@ $formsTca = [
     ],
     'showsubmissionsfullpercentage' => [
         'exclude' => false,
-        'label' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:powermail.tca.showsubmissionsfullpercentage',
-        'description' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:powermail.tca.showsubmissionsfullpercentage.description',
+        'label' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:tca.showsubmissionsfullpercentage',
+        'description' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:tca.showsubmissionsfullpercentage.description',
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
