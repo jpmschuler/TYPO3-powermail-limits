@@ -28,7 +28,7 @@
 			</trans-unit>
 			<trans-unit id="form.submissionlimitwarning.text" resname="form.submissionlimitwarning.text">
 				<source>This form has a submission limit. Please check the response after submission to ensure your submission was successful and a slot could be assigned.</source>
-				<target>Dieses Formular hat eine Teilnahmebegrenzung. Nach der Eintragung bitte die Rückmeldung prüfen, ob ein Platz zugeordnet werden konnte.</target>
+				<target>Dieses Formular hat eine Teilnahmebegrenzung. Nach dem Abschicken bitte die Rückmeldung prüfen, ob ein Platz zugeordnet werden konnte.</target>
 			</trans-unit>
 			<trans-unit id="form.submissionlimitwarning.text.addon.percentage" resname="form.submissionlimitwarning.text.addon.percentage">
 				<source>Current allocation: %s</source>
