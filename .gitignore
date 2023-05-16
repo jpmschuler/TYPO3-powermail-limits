@@ -13,3 +13,4 @@
 /typoscript-lint.yml
 /report.*
 /.cache*
+.DS_Store
