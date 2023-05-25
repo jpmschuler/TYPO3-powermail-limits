@@ -4,7 +4,7 @@ defined('TYPO3') || die();
 
 $formsTca = [
     'submissionlimit' => [
-        'exclude' => false,
+        'exclude' => true,
         'label' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:tca.submissionlimit',
         'description' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:tca.submissionlimit.description',
         'config' => [
@@ -15,7 +15,7 @@ $formsTca = [
         ],
     ],
     'haswaitlist' => [
-        'exclude' => false,
+        'exclude' => true,
         'label' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:tca.haswaitlist',
         'description' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:tca.haswaitlist.description',
         'config' => [
@@ -29,7 +29,7 @@ $formsTca = [
         ],
     ],
     'showsubmissionsfullpercentage' => [
-        'exclude' => false,
+        'exclude' => true,
         'label' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:tca.showsubmissionsfullpercentage',
         'description' => 'LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:tca.showsubmissionsfullpercentage.description',
         'config' => [
