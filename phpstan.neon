@@ -1,0 +1,12 @@
+parameters:
+    paths:
+      - Classes
+      - Tests
+    excludePaths:
+      - Classes/Utility/Conf.php
+    bootstrapFiles:
+      - .Build/vendor/autoload.php
+      - .phpstan.constants.php
+    scanDirectories:
+      - Classes
+      - Tests

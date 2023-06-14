@@ -110,6 +110,9 @@ jobs:
           git config user.email "<>"
       - name: Composer install
         uses: php-actions/composer@v6
+        with:
+          args: --ignore-platform-req=ext-gd --ignore-platform-req=ext-pcntl --ignore-platform-req=ext-zip
+          php_version: "7.4"
       - name: Create new tag
         run: |
           export GIT_LASTTAG="$(git describe --tags --abbrev=0)"
