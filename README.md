@@ -1,7 +1,13 @@
-[![CI](https://github.com/jpmschuler/TYPO3-powermail-limits/actions/workflows/ci.yml/badge.svg)](https://github.com/jpmschuler/TYPO3-powermail-limits/actions/workflows/ci.yml)
-![PHP-v](https://shields.io/packagist/php-v/jpmschuler/powermail-limits)
-[![TYPO3 V11](https://img.shields.io/badge/TYPO3-11-orange.svg)](https://get.typo3.org/version/11)
-![Packagist](https://shields.io/packagist/v/jpmschuler/powermail-limits)
+
+[![TYPO3 extension powermail_limits](https://shields.io/endpoint?label=EXT&url=https://typo3-badges.dev/badge/powermail_limits/extension/shields)](https://extensions.typo3.org/extension/powermail_limits)
+[![Latest TER version](https://shields.io/endpoint?label=TER&url=https://typo3-badges.dev/badge/powermail_limits/version/shields)](https://extensions.typo3.org/extension/powermail_limits)
+[![Latest Packagist version](https://shields.io/packagist/v/jpmschuler/powermail-limits?label=Packagist&logo=packagist&logoColor=white)](https://packagist.org/packages/jpmschuler/powermail-limits)
+![Total downloads](https://typo3-badges.dev/badge/powermail_limits/downloads/shields.svg)
+
+![Supported TYPO3 versions](https://shields.io/endpoint?label=typo3&url=https://typo3-badges.dev/badge/powermail_limits/typo3/shields)
+![Supported PHP versions](https://shields.io/packagist/php-v/jpmschuler/powermail-limits?logo=php)
+[![Current CI health](https://github.com/jpmschuler/TYPO3-powermail-limits/actions/workflows/ci.yml/badge.svg)](https://github.com/jpmschuler/TYPO3-powermail-limits/actions/workflows/ci.yml)
+
 
 # EXT:powermail_limits
 
