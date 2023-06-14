@@ -1,6 +1,6 @@
 {
     "name": "jpmschuler/powermail-limits",
-    "description": "Addition to EXT:powermail which allows limits for form submissions",
+    "description": "TYPO3 EXT:powermail_limits - Addition to EXT:powermail which allows limits for form submissions",
     "license": "GPL-2.0-or-later",
     "type": "typo3-cms-extension",
     "authors": [
@@ -146,6 +146,6 @@
             "@putenv TYPO3_DISABLE_DOCS_VERSION_UPDATE=1",
             "@version:set:ext_emconf.php"
         ],
-        "version:set:ext_emconf.php": "echo \"skipped\""
+        "version:set:ext_emconf.php": "tailor set-version"
     }
 }

@@ -109,8 +109,11 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
       - name: Create new tag
+        uses: php-actions/composer@v6
         run: |
           export GIT_LASTTAG="$(git describe --tags --abbrev=0)"
           export CHANGELOG="$(git log ${GIT_LASTTAG}...HEAD --abbrev=0 --format="%s%n%b")"
+          composer run version:set $GitVersion_MajorMinorPatch || true
+          git commit ext_emconf.php -m "[RELEASE] Releasing v${GitVersion_MajorMinorPatch}" || true
           git tag v${GitVersion_MajorMinorPatch} -m "[RELEASE] Releasing v${GitVersion_MajorMinorPatch}" -m "" -m "Changes since last release:" -m "${CHANGELOG}"
           git push origin v${GitVersion_MajorMinorPatch}

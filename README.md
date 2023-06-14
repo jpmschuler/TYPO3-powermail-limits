@@ -21,7 +21,7 @@ This extension allows you to set a submission limit for a TYPO3 EXT:powermail fo
 
 # Installation
 
-`composer req jpmschuler/powermail-limits`, no legacy install option available currently
+`composer req jpmschuler/powermail-limits`
 
 # What it does
 
