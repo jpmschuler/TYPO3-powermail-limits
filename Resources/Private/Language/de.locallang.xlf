@@ -124,7 +124,7 @@
 			</trans-unit>
 			<trans-unit id="mail.waitinglistsubmission.bodyprefix.text" resname="mail.waitinglistsubmission.bodyprefix.text">
 				<source>We received your registration, however the last slot was already taken. Nevertheless, we added you to the waiting list, in case a slot becomes available.</source>
-				<target>Ihre Eintragung ist eingegangen, allerdings war der letzte Platz bereits vergeben. Wir haben eine Eintragung auf der Warteliste gemacht für den Fall das wieder ein Platz verfügbar wird.</target>
+				<target>Ihre Eintragung ist eingegangen, allerdings war der letzte Platz bereits vergeben. Wir haben eine Eintragung auf der Warteliste gemacht für den Fall, dass wieder ein Platz verfügbar wird.</target>
 			</trans-unit>
 			<trans-unit id="mail.waitinglistsubmission.subjectprefix" resname="mail.waitinglistsubmission.subjectprefix">
 				<source>Waiting list registration - </source>
