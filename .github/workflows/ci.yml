@@ -112,11 +112,14 @@ jobs:
         with:
           args: --ignore-platform-req=ext-gd --ignore-platform-req=ext-pcntl --ignore-platform-req=ext-zip
           php_version: "7.4"
-      - name: Create new tag
+      - name: Create new tag, updating optional version files
         run: |
           export GIT_LASTTAG="$(git describe --tags --abbrev=0)"
           export CHANGELOG="$(git log ${GIT_LASTTAG}...HEAD --abbrev=0 --format="%s%n%b")"
           composer run version:set $GitVersion_MajorMinorPatch || true
           git commit ext_emconf.php -m "[RELEASE] Releasing v${GitVersion_MajorMinorPatch}" || true
           git tag v${GitVersion_MajorMinorPatch} -m "[RELEASE] Releasing v${GitVersion_MajorMinorPatch}" -m "" -m "Changes since last release:" -m "${CHANGELOG}"
+      - name: Publish new tag
+        run: |
           git push origin v${GitVersion_MajorMinorPatch}
+          git push || true
