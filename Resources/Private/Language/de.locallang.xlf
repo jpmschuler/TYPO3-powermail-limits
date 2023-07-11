@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xsi:schemaLocation="http://docs.oasis-open.org/xliff/v1.2/cs02/xliff-core-1.2-transitional.xsd">
+<xliff version="1.2" xmlns:t3="http://typo3.org/schemas/xliff" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" target-language="de" original="" datatype="plaintext" date="2023-05-04T10:35:25+02:00">
 		<body>
 			<trans-unit id="form.nosubmissionpossible.header" resname="form.nosubmissionpossible.header">
@@ -9,24 +7,16 @@
 				<target>Keine Eintragung möglich</target>
 			</trans-unit>
 			<trans-unit id="form.nosubmissionpossible.text" resname="form.nosubmissionpossible.text">
-				<source>This form has a submission limit and that limit is reached. As there is no waiting list, no
-					further submissions are possible.
-				</source>
-				<target>Dieses Formular hat eine Teilnahmebegrenzung und diese Grenze wurde erreicht. Da es keine
-					Warteliste gibt, sind keine weiteren Eintragungen möglich.
-				</target>
+				<source>This form has a submission limit and that limit is reached. As there is no waiting list, no further submissions are possible.</source>
+				<target>Dieses Formular hat eine Teilnahmebegrenzung und diese Grenze wurde erreicht. Da es keine Warteliste gibt, sind keine weiteren Eintragungen möglich.</target>
 			</trans-unit>
 			<trans-unit id="form.onlywaitlistwarning.header" resname="form.onlywaitlistwarning.header">
 				<source>Only wait list possible!</source>
 				<target>Nur Eintragung in Warteliste möglich!</target>
 			</trans-unit>
 			<trans-unit id="form.onlywaitlistwarning.text" resname="form.onlywaitlistwarning.text">
-				<source>This form has a submission limit and that limit is reached. However you can submit to a waiting
-					list in case a slot becomes available again.
-				</source>
-				<target>Dieses Formular hat eine Teilnahmebegrenzung und diese Grenze wurde erreicht. Es existiert aber
-					eine Warteliste auf die man sich eintragen kann für den Fall, dass wieder ein Platz frei wird.
-				</target>
+				<source>This form has a submission limit and that limit is reached. However you can submit to a waiting list in case a slot becomes available again.</source>
+				<target>Dieses Formular hat eine Teilnahmebegrenzung und diese Grenze wurde erreicht. Es existiert aber eine Warteliste auf die man sich eintragen kann für den Fall, dass wieder ein Platz frei wird.</target>
 			</trans-unit>
 			<trans-unit id="form.submissionlimit.legend" resname="form.submissionlimit.legend">
 				<source>Submission limit</source>
@@ -37,24 +27,16 @@
 				<target>Teilnahmebegrenzung vorhanden</target>
 			</trans-unit>
 			<trans-unit id="form.submissionlimitwarning.text" resname="form.submissionlimitwarning.text">
-				<source>This form has a submission limit. Please check the response after submission to ensure your
-					submission was successful and a slot could be assigned.
-				</source>
-				<target>Dieses Formular hat eine Teilnahmebegrenzung. Nach dem Abschicken bitte die Rückmeldung prüfen,
-					ob ein Platz zugeordnet werden konnte.
-				</target>
+				<source>This form has a submission limit. Please check the response after submission to ensure your submission was successful and a slot could be assigned.</source>
+				<target>Dieses Formular hat eine Teilnahmebegrenzung. Nach dem Abschicken bitte die Rückmeldung prüfen, ob ein Platz zugeordnet werden konnte.</target>
 			</trans-unit>
-			<trans-unit id="form.submissionlimitwarning.text.addon.percentage"
-						resname="form.submissionlimitwarning.text.addon.percentage">
+			<trans-unit id="form.submissionlimitwarning.text.addon.percentage" resname="form.submissionlimitwarning.text.addon.percentage">
 				<source>Current allocation: %s</source>
 				<target>Aktuelle Belegung: %s</target>
 			</trans-unit>
-			<trans-unit id="form.submissionlimitwarning.text.addon.waitlist"
-						resname="form.submissionlimitwarning.text.addon.waitlist">
+			<trans-unit id="form.submissionlimitwarning.text.addon.waitlist" resname="form.submissionlimitwarning.text.addon.waitlist">
 				<source>Even if the limit is reached, you still can submit to the waitlist.</source>
-				<target>Selbst wenn die Begrenzung erreicht ist, besteht immer noch die Möglichkeit sich für die
-					Warteliste einzutragen.
-				</target>
+				<target>Selbst wenn die Begrenzung erreicht ist, besteht immer noch die Möglichkeit sich für die Warteliste einzutragen.</target>
 			</trans-unit>
 			<trans-unit id="form.submissionspercentage.0" resname="form.submissionspercentage.0">
 				<source>enough free slots</source>
@@ -66,7 +48,7 @@
 			</trans-unit>
 			<trans-unit id="form.submissionspercentage.100" resname="form.submissionspercentage.100">
 				<source>no slot left</source>
-				<target>kein Platz verfügbar</target>
+				<target>kein Platz verfügbar </target>
 			</trans-unit>
 			<trans-unit id="form.submissionspercentage.20" resname="form.submissionspercentage.20">
 				<source>enough free slots</source>
@@ -116,54 +98,37 @@
 				<source>No slot assigned, registered for waiting list</source>
 				<target>Kein Platz verfügbar, Eintragung auf Warteliste</target>
 			</trans-unit>
-			<trans-unit id="mail.invalidsubmission.bodyprefix.header"
-						resname="mail.invalidsubmission.bodyprefix.header">
+			<trans-unit id="mail.invalidsubmission.bodyprefix.header" resname="mail.invalidsubmission.bodyprefix.header">
 				<source>Attention: no slot available</source>
 				<target>Warnung: kein Platz verfügbar</target>
 			</trans-unit>
 			<trans-unit id="mail.invalidsubmission.bodyprefix.text" resname="mail.invalidsubmission.bodyprefix.text">
-				<source>We received your registration, however the last slot was already taken and there is no waiting
-					list. So your registration cannot be considered.
-				</source>
-				<target>Ihre Eintragung ist eingegangen, allerdings war der letzte Platz bereits vergeben und es gibt
-					keine Warteliste. Dementsprechend kann die Eintragung nicht berücksichtigt werden.
-				</target>
+				<source>We received your registration, however the last slot was already taken and there is no waiting list. So your registration cannot be considered.</source>
+				<target>Ihre Eintragung ist eingegangen, allerdings war der letzte Platz bereits vergeben und es gibt keine Warteliste. Dementsprechend kann die Eintragung nicht berücksichtigt werden.</target>
 			</trans-unit>
 			<trans-unit id="mail.invalidsubmission.subjectprefix" resname="mail.invalidsubmission.subjectprefix">
-				<source>No slot available -</source>
-				<target>Kein Platz verfügbar -</target>
+				<source>No slot available - </source>
+				<target>Kein Platz verfügbar - </target>
 			</trans-unit>
 			<trans-unit id="mail.submissionlimitreached.body" resname="mail.submissionlimitreached.body">
-				<source>The form %s has a submission limit which has been reached. If there is a waiting list in place
-					this will now be filled, else all further submissions are prevented.
-				</source>
-				<target>Das Formular %s hat eine Teilnahmebeschränkung konfiguriert die jetzt erreicht wurde. Falls Sie
-					eine Warteliste konfiguriert haben wird diese nun gefüllt, alternativ werden weitere
-					Formularübermittlungen verhindert.
-				</target>
+				<source>The form %s has a submission limit which has been reached. If there is a waiting list in place this will now be filled, else all further submissions are prevented.</source>
+				<target>Das Formular %s hat eine Teilnahmebeschränkung konfiguriert die jetzt erreicht wurde. Falls Sie eine Warteliste konfiguriert haben wird diese nun gefüllt, alternativ werden weitere Formularübermittlungen verhindert.</target>
 			</trans-unit>
 			<trans-unit id="mail.submissionlimitreached.subject" resname="mail.submissionlimitreached.subject">
 				<source>Submission limit reached for form %s</source>
 				<target>Teilnahmebeschränkung erreicht für Formular %s</target>
 			</trans-unit>
-			<trans-unit id="mail.waitinglistsubmission.bodyprefix.header"
-						resname="mail.waitinglistsubmission.bodyprefix.header">
+			<trans-unit id="mail.waitinglistsubmission.bodyprefix.header" resname="mail.waitinglistsubmission.bodyprefix.header">
 				<source>Attention: registration for waiting list only</source>
 				<target>Warnung: nur Platz auf Warteliste</target>
 			</trans-unit>
-			<trans-unit id="mail.waitinglistsubmission.bodyprefix.text"
-						resname="mail.waitinglistsubmission.bodyprefix.text">
-				<source>We received your registration, however the last slot was already taken. Nevertheless, we added
-					you to the waiting list, in case a slot becomes available.
-				</source>
-				<target>Ihre Eintragung ist eingegangen, allerdings war der letzte Platz bereits vergeben. Wir haben
-					eine Eintragung auf der Warteliste gemacht für den Fall, dass wieder ein Platz verfügbar wird.
-				</target>
+			<trans-unit id="mail.waitinglistsubmission.bodyprefix.text" resname="mail.waitinglistsubmission.bodyprefix.text">
+				<source>We received your registration, however the last slot was already taken. Nevertheless, we added you to the waiting list, in case a slot becomes available.</source>
+				<target>Ihre Eintragung ist eingegangen, allerdings war der letzte Platz bereits vergeben. Wir haben eine Eintragung auf der Warteliste gemacht für den Fall, dass wieder ein Platz verfügbar wird.</target>
 			</trans-unit>
-			<trans-unit id="mail.waitinglistsubmission.subjectprefix"
-						resname="mail.waitinglistsubmission.subjectprefix">
-				<source>Waiting list registration -</source>
-				<target>Wartelistenplatz -</target>
+			<trans-unit id="mail.waitinglistsubmission.subjectprefix" resname="mail.waitinglistsubmission.subjectprefix">
+				<source>Waiting list registration - </source>
+				<target>Wartelistenplatz - </target>
 			</trans-unit>
 			<trans-unit id="tca.haswaitlist" resname="tca.haswaitlist">
 				<source>has waitlist</source>
@@ -177,8 +142,7 @@
 				<source>show allocation percentage</source>
 				<target>Belegungsquote anzeigen</target>
 			</trans-unit>
-			<trans-unit id="tca.showsubmissionsfullpercentage.description"
-						resname="tca.showsubmissionsfullpercentage.description">
+			<trans-unit id="tca.showsubmissionsfullpercentage.description" resname="tca.showsubmissionsfullpercentage.description">
 				<source>Show the current number of submission as a percentage</source>
 				<target>Die aktuelle Belegung in Prozent anzeigen</target>
 			</trans-unit>
