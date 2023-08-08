@@ -1,5 +1,5 @@
 {
-    "name": "jpmschuler\/powermail-limits",
+    "name": "jpmschuler/powermail-limits",
     "description": "TYPO3 EXT:powermail_limits - Addition to EXT:powermail which allows limits for form submissions",
     "license": "GPL-2.0-or-later",
     "type": "typo3-cms-extension",

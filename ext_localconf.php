@@ -1,5 +1,7 @@
 <?php
 
+defined('TYPO3') || die();
+
 use In2code\Powermail\Domain\Service\Mail\SendMailService;
 use Jpmschuler\PowermailLimits\SignalSlot\MailManipulation;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

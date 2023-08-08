@@ -11,7 +11,7 @@ jobs:
   php-lint:
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, '[RELEASE]')"
     name: "PHP linter"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: "Checkout"
         uses: actions/checkout@v3
@@ -20,20 +20,18 @@ jobs:
         with:
           php-version: "${{ matrix.php-version }}"
           coverage: none
-          tools: composer:v2.4
+          tools: composer:v2.5
       - name: "Run PHP lint"
         run: "composer lint:php"
     strategy:
       fail-fast: false
       matrix:
         php-version:
-          - 7.4
-          - 8.0
           - 8.1
   php-codequality:
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, '[RELEASE]')"
     name: "Code quality checks"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: "Checkout"
         uses: actions/checkout@v3
@@ -42,7 +40,7 @@ jobs:
         with:
           php-version: "${{ matrix.php-version }}"
           coverage: none
-          tools: composer:v2.4
+          tools: composer:v2.5
       - name: "Show Composer version"
         run: composer --version
       - name: "Cache dependencies installed with composer"
@@ -60,31 +58,24 @@ jobs:
       matrix:
         command:
           - "normalize"
-          - "lint:php-cs-fixer:dry-run"
-          - "lint:phpcs:dry-run"
-          - "lint:phpstan:ci"
+          - "run lint:php-cs-fixer:dry-run"
+          - "run lint:phpcs:dry-run"
+          - "run lint:phpstan:ci"
         php-version:
-          - 7.4
-  xliff-lint:
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, '[RELEASE]')"
-    name: "Xliff linter"
-    runs-on: ubuntu-22.04
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@v3
-      - name: "Run the xliff lint"
-        uses: TYPO3-Continuous-Integration/TYPO3-CI-Xliff-Lint@v1
+          - 8.1
 
   calculate-version:
     name: "calculating next SemVer"
-    runs-on: ubuntu-20.04
-    needs: [ php-lint,xliff-lint,php-codequality ]
+    runs-on: ubuntu-22.04
+    needs: [ php-lint,php-codequality ]
+    if: github.ref == 'refs/heads/main'
     outputs:
       majorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }} # To use an output in another job, you have to map it to a job output.
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          token: ${{ secrets.PAT }}
           fetch-depth: 0
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0
@@ -112,15 +103,15 @@ jobs:
         uses: php-actions/composer@v6
         with:
           args: --ignore-platform-req=ext-gd --ignore-platform-req=ext-pcntl --ignore-platform-req=ext-zip
-          php_version: "7.4"
-      - name: Create new tag, updating optional version files
+          php_version: "8.1"
+      - name: "Create new tag, updating optional version files"
         run: |
           export GIT_LASTTAG="$(git describe --tags --abbrev=0)"
           export CHANGELOG="$(git log ${GIT_LASTTAG}...HEAD --abbrev=0 --format="%s%n%b")"
           composer run version:set $GitVersion_MajorMinorPatch || true
           git commit ext_emconf.php -m "[RELEASE] Releasing v${GitVersion_MajorMinorPatch}" || true
           git tag v${GitVersion_MajorMinorPatch} -m "[RELEASE] Releasing v${GitVersion_MajorMinorPatch}" -m "" -m "Changes since last release:" -m "${CHANGELOG}"
-      - name: Publish new tag
+      - name: "Publish new tag to GitHub"
         run: |
           git push origin v${GitVersion_MajorMinorPatch}
           git push || true
