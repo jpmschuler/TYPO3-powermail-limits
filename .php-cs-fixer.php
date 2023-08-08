@@ -25,8 +25,8 @@
  * inside the TYPO3 directory. Warning: This may take up to 10 minutes.
  *
  * For more information read:
- * 	 https://www.php-fig.org/psr/psr-2/
- * 	 https://cs.sensiolabs.org
+ *     https://www.php-fig.org/psr/psr-2/
+ *     https://cs.sensiolabs.org
  */
 if (PHP_SAPI !== 'cli') {
     die('This script supports command line usage only. Please check your command.');
@@ -36,6 +36,7 @@ $finder = (new PhpCsFixer\Finder())
     ->in('Classes')
     ->in('Tests')
     ->in('Configuration');
+
 // Return a Code Sniffing configuration using
 // all sniffers needed for PSR-2
 // and additionally:

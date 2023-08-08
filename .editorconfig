@@ -16,16 +16,12 @@ trim_trailing_whitespace = true
 [*.{ts,js}]
 indent_size = 2
 
+[*.php]
+max_line_length = 120
+
 # JSON-Files
 [*.json]
-indent_style = tab
-
-
-# composer.json with composer normalize standards
-[composer.json]
-indent_style = space
-indent_size = 4
-insert_final_newline = true
+indent_size = 2
 
 # YAML-Files
 [*.{yaml,yml}]

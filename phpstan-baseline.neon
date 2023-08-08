@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to method assign\\(\\) on an unknown class TYPO3\\\\CMS\\\\Fluid\\\\View\\\\StandaloneView\\.$#"
+			count: 2
+			path: Classes/SignalSlot/MailManipulation.php
+
+		-
+			message: "#^Parameter \\$standaloneView of method Jpmschuler\\\\PowermailLimits\\\\SignalSlot\\\\MailManipulation\\:\\:createEmailBodyBeforeRender\\(\\) has invalid type TYPO3\\\\CMS\\\\Fluid\\\\View\\\\StandaloneView\\.$#"
+			count: 1
+			path: Classes/SignalSlot/MailManipulation.php

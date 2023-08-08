@@ -1,164 +1,146 @@
 {
-    "name": "jpmschuler/powermail-limits",
-    "description": "TYPO3 EXT:powermail_limits - Addition to EXT:powermail which allows limits for form submissions",
-    "license": "GPL-2.0-or-later",
-    "type": "typo3-cms-extension",
-    "authors": [
-        {
-            "name": "J. Peter M. Schuler",
-            "email": "j.peter.m.schuler@uni-due.de",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": "^7.4 || ^8.0 || ^8.1",
-        "in2code\/powermail": "10.7.2",
-        "typo3\/cms-core": "^11.5.26",
-        "typo3\/cms-frontend": "^11.5.26"
-    },
-    "require-dev": {
-        "ergebnis\/composer-normalize": "^2.19.0",
-        "friendsofphp\/php-cs-fixer": "^3.4.0",
-        "helmich\/typo3-typoscript-lint": "^2.5.2",
-        "jangregor\/phpstan-prophecy": "^1.0.0",
-        "phpstan\/extension-installer": "^1.1.0",
-        "phpstan\/phpstan": "^1.6.2",
-        "saschaegerer\/phpstan-typo3": "^1.1.2",
-        "seld\/jsonlint": "^1.9.0",
-        "seregazhuk\/php-watcher": "^0.5.2",
-        "squizlabs\/php_codesniffer": "^3.6.2",
-        "ssch\/typo3-rector": "^1",
-        "symfony\/yaml": "^4.4.29 || ^5.3.6 || ^6.0",
-        "typo3\/minimal": "^11.5.0",
-        "typo3\/tailor": "^1.5"
-    },
-    "autoload": {
-        "psr-4": {
-            "Jpmschuler\\PowermailLimits\\": "Classes\/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Jpmschuler\\PowermailLimits\\Tests\\": "Tests"
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "bk2k\/configuration-installer": true,
-            "ergebnis\/composer-normalize": true,
-            "typo3\/class-alias-loader": true,
-            "typo3\/cms-composer-installers": true,
-            "phpstan\/extension-installer": true
-        },
-        "bin-dir": ".Build\/bin",
-        "preferred-install": {
-            "jpmschuler\/typo3-extdev-helper": "source"
-        },
-        "sort-packages": true,
-        "vendor-dir": ".Build\/vendor"
-    },
-    "extra": {
-        "codequality": {
-            "phpstan-level": "6",
-            "typo3-deprecations": "11"
-        },
-        "typo3\/cms": {
-            "app-dir": ".Build",
-            "extension-key": "powermail_limits",
-            "web-dir": ".Build\/public"
-        }
-    },
-    "scripts": {
-        "codequality": [
-            "@lint:php-cs-fixer",
-            "@lint:all",
-            "@rector:dry-run",
-            "@test:deprecations"
-        ],
-        "codequality:autofix": [
-            "@lint:php-cs-fixer",
-            "@lint:phpcbf",
-            "@rector"
-        ],
-        "develop": [
-            "Composer\\Config::disableProcessTimeout",
-            ".Build\/bin\/php-watcher foo --exec 'composer run develop:deploy' --signal SIGTERM --ignore .Build --ext=php,yaml,html,txt,typoscript,css,js,xlf"
-        ],
-        "develop:deploy": "[ -f .\/.deploy.sh ] && .\/.deploy.sh",
-        "git:precommit": [
-            "echo 'running precommit checks...'",
-            "@lint:php:onlyerrors",
-            "@lint:php-cs-fixer:dry-run:onlyerrors",
-            "@lint:phpcs:dry-run:onlyerrors",
-            "@lint:phpcpd:onlyerrors",
-            "@lint:xliff:onlyerrors"
-        ],
-        "lint:all": [
-            "@lint:php",
-            "@lint:php-cs-fixer:dry-run",
-            "@lint:phpcs:dry-run",
-            "@lint:phpcpd",
-            "@lint:phpstan"
-        ],
-        "lint:php": "find *.php Classes Configuration Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
-        "lint:php-cs-fixer": "php-cs-fixer fix",
-        "lint:php-cs-fixer:dry-run": "php-cs-fixer fix --dry-run --using-cache=no --diff",
-        "lint:php-cs-fixer:dry-run:onlyerrors": "php-cs-fixer fix --dry-run --using-cache=no --diff > \/dev\/null",
-        "lint:php:onlyerrors": "find *.php Classes Configuration Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l > \/dev\/null",
-        "lint:phpcbf": "phpcbf Classes Configuration Tests",
-        "lint:phpcpd": "phpcpd Classes",
-        "lint:phpcpd:onlyerrors": "phpcpd Classes  > \/dev\/null",
-        "lint:phpcs": "@lint:phpcbf",
-        "lint:phpcs:dry-run": "phpcs Classes Configuration Tests",
-        "lint:phpcs:dry-run:ci": "phpcs --report=full --report-\\\\Micheh\\\\PhpCodeSniffer\\\\Report\\\\Gitlab=report.phpcs.json  Classes Configuration Tests",
-        "lint:phpcs:dry-run:onlyerrors": "phpcs -n Classes Configuration Tests",
-        "lint:phpstan": "phpstan --level=$(composer config extra.codequality.phpstan-level 2> \/dev\/null || echo 5) --memory-limit=1G analyse",
-        "lint:phpstan:ci": "phpstan --level=$(composer config extra.codequality.phpstan-level 2> \/dev\/null || echo 5) --memory-limit=1G --no-progress --error-format=gitlab analyse > report.phpstan.json",
-        "lint:typoscript": "typoscript-lint",
-        "lint:xliff": "xmllint --schema .Build\/xliff-core-1.2-strict.xsd --noout $(find Resources\/Private\/Language -name '*.xlf')",
-        "lint:xliff:installPrerequisites": "wget -q -O .Build\/xliff-core-1.2-strict.xsd https:\/\/docs.oasis-open.org\/xliff\/v1.2\/os\/xliff-core-1.2-strict.xsd",
-        "lint:xliff:onlyerrors": "xmllint --schema .Build\/xliff-core-1.2-strict.xsd --noout $(find Resources\/Private\/Language -name '*.xlf') > \/dev\/null",
-        "post-install": [
-            "@lint:xliff:installPrerequisites",
-            "@typo3-extdev-helper-init"
-        ],
-        "post-update": "@post-install",
-        "pretest:deprecations": [
-            "mkdir -p .Build\/$(composer config extra.typo3\/cms.extension-key)",
-            "find .\/* -mindepth 0 -maxdepth 0 -not -path '.\/node_modules' -exec cp -r {} .Build\/$(composer config extra.typo3\/cms.extension-key)\/ \\;"
-        ],
-        "rector": [
-            "rector process --config=rector.php . ",
-            "@lint:php-cs-fixer"
-        ],
-        "rector:dry-run": "rector process --config=rector.php --dry-run --  .",
-        "rector:dry-run:ci": "rector process --config=rector.php --dry-run --output-format json -- . > report.rector.json",
-        "rector:force": "rector process .",
-        "test": [
-            "@lint:php-cs-fixer",
-            "@test:unit"
-        ],
-        "test:deprecations": [
-            "@pretest:deprecations",
-            "@php typo3scan scan --target $(composer config extra.codequality.typo3-deprecations 2> \/dev\/null || echo 11) -- .Build\/$(composer config extra.typo3\/cms.extension-key) || true"
-        ],
-        "test:deprecations:11LTS:ci": [
-            "@pretest:deprecations",
-            "@php typo3scan scan --target 11 --format junit -- .Build\/$(composer config extra.typo3\/cms.extension-key) > $(composer config extra.typo3\/cms.extension-key)-deprecations-11LTS.xml || true"
-        ],
-        "test:deprecations:ci": [
-            "@pretest:deprecations",
-            "@php typo3scan scan --target $(composer config extra.codequality.typo3-deprecations 2> \/dev\/null || echo 11) --format junit -- .Build\/$(composer config extra.typo3\/cms.extension-key) > report.$(composer config extra.typo3\/cms.extension-key)-deprecations-10LTS.xml || true",
-            "@test:deprecations:11LTS:ci"
-        ],
-        "test:unit": "phpunit -c $(composer config vendor-dir)\/nimut\/testing-framework\/res\/Configuration\/UnitTests.xml --log-junit report.phpunit.xml Tests\/Unit",
-        "typo3-extdev-helper-init": [
-            "@php .Build\/vendor\/jpmschuler\/typo3-extdev-helper\/Scripts\/Init.php"
-        ],
-        "version:set": [
-            "@putenv TYPO3_DISABLE_DOCS_VERSION_UPDATE=1",
-            "@version:set:ext_emconf.php"
-        ],
-        "version:set:ext_emconf.php": "tailor set-version"
+  "name": "jpmschuler\/powermail-limits",
+  "description": "TYPO3 EXT:powermail_limits - Addition to EXT:powermail which allows limits for form submissions",
+  "license": "GPL-2.0-or-later",
+  "type": "typo3-cms-extension",
+  "authors": [
+    {
+      "name": "J. Peter M. Schuler",
+      "email": "j.peter.m.schuler@uni-due.de",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "in2code\/powermail": "10.7.2",
+    "typo3\/cms-core": "^11.5.26",
+    "typo3\/cms-frontend": "^11.5.26"
+  },
+  "require-dev": {
+    "ergebnis\/composer-normalize": "^2.19.0",
+    "friendsofphp\/php-cs-fixer": "^3.4.0",
+    "helmich\/typo3-typoscript-lint": "^3.1.0",
+    "jangregor\/phpstan-prophecy": "^1.0.0",
+    "phpstan\/extension-installer": "^1.1.0",
+    "phpstan\/phpstan": "^1.6.2",
+    "roave\/security-advisories": "dev-latest",
+    "saschaegerer\/phpstan-typo3": "^1.1.2",
+    "seld\/jsonlint": "^1.9.0",
+    "squizlabs\/php_codesniffer": "^3.6.2",
+    "ssch\/typo3-rector": "^1",
+    "typo3\/tailor": "^1.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Jpmschuler\\PowermailLimits\\": "Classes\/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Jpmschuler\\PowermailLimits\\Tests\\": "Tests"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "bk2k\/configuration-installer": true,
+      "ergebnis\/composer-normalize": true,
+      "typo3\/class-alias-loader": true,
+      "typo3\/cms-composer-installers": true,
+      "phpstan\/extension-installer": true
+    },
+    "bin-dir": ".Build\/bin",
+    "preferred-install": {
+      "jpmschuler\/typo3-extdev-helper": "source"
+    },
+    "sort-packages": true,
+    "vendor-dir": ".Build\/vendor"
+  },
+  "extra": {
+    "codequality": {
+      "phpstan-level": "6",
+      "typo3-deprecations": "11"
+    },
+    "typo3\/cms": {
+      "app-dir": ".Build",
+      "extension-key": "powermail_limits",
+      "web-dir": ".Build\/public"
+    }
+  },
+  "scripts": {
+    "codequality": [
+      "@lint:php-cs-fixer",
+      "@lint:all",
+      "@rector:dry-run"
+    ],
+    "codequality:autofix": [
+      "@lint:php-cs-fixer",
+      "@lint:phpcbf",
+      "@rector"
+    ],
+    "develop": [
+      "Composer\\Config::disableProcessTimeout",
+      ".Build/bin/php-watcher foo --exec 'composer run develop:deploy' --signal SIGTERM --ignore .Build --ext=php,yaml,html,txt,typoscript,css,js,xlf"
+    ],
+    "develop:deploy": "[ -f ./.deploy.sh ] && ./.deploy.sh",
+    "git:precommit": [
+      "echo 'running precommit checks...'",
+      "@lint:php:onlyerrors",
+      "@lint:php-cs-fixer:dry-run:onlyerrors",
+      "@lint:phpcs:dry-run:onlyerrors",
+      "@lint:phpcpd:onlyerrors"
+    ],
+    "lint:all": [
+      "@lint:php",
+      "@lint:php-cs-fixer:dry-run",
+      "@lint:phpcs:dry-run",
+      "@lint:phpstan"
+    ],
+    "lint:php": "find *.php Classes Configuration Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
+    "lint:php-cs-fixer": "php-cs-fixer fix",
+    "lint:php-cs-fixer:dry-run": "php-cs-fixer fix --dry-run --using-cache=no --diff",
+    "lint:php-cs-fixer:dry-run:onlyerrors": "php-cs-fixer fix --dry-run --using-cache=no --diff > /dev/null",
+    "lint:php:onlyerrors": "find *.php Classes -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l > /dev/null",
+    "lint:phpcbf": "phpcbf Classes",
+    "lint:phpcs": "@lint:phpcbf",
+    "lint:phpcs:dry-run": "phpcs Classes",
+    "lint:phpcs:dry-run:onlyerrors": "phpcs -n Classes",
+    "lint:phpstan": "phpstan --level=5 --memory-limit=1G analyse",
+    "lint:phpstan:baseline": "phpstan --level=5 --memory-limit=1G analyse --generate-baseline",
+    "lint:phpstan:ci": "phpstan --level=5 --memory-limit=1G --no-progress analyse",
+    "lint:typoscript": "typoscript-lint",
+    "post-update": "@post-install",
+    "prepare-release": [
+      "rm .gitignore",
+      "rm -rf .Build",
+      "rm -rf .ddev",
+      "rm -rf .github",
+      "rm -rf .gitlab",
+      "rm -rf Tests",
+      "rm -rf tools",
+      "rm .editorconfig",
+      "rm .gitattributes",
+      "rm .php-cs-fixer.php",
+      "rm .phpcs.xml",
+      "rm phpstan.neon",
+      "rm phpstan-baseline.neon",
+      "rm .phpcs.xml",
+      "rm GitVersion.yml",
+      "rm rector.php"
+    ],
+    "rector": [
+      "rector process --config=rector.php . ",
+      "@lint:php-cs-fixer"
+    ],
+    "rector:dry-run": "rector process --config=rector.php --dry-run --  .",
+    "rector:dry-run:ci": "rector process --config=rector.php --dry-run --output-format json -- . > report.rector.json",
+    "rector:force": "rector process .",
+    "test": [
+      "@lint:php-cs-fixer"
+    ],
+    "version:set": [
+      "@putenv TYPO3_DISABLE_DOCS_VERSION_UPDATE=1",
+      "@version:set:ext_emconf.php"
+    ],
+    "version:set:ext_emconf.php": "tailor set-version"
+  }
 }
