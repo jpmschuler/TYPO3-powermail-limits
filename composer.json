@@ -44,9 +44,9 @@
     "allow-plugins": {
       "bk2k\/configuration-installer": true,
       "ergebnis\/composer-normalize": true,
+      "phpstan\/extension-installer": true,
       "typo3\/class-alias-loader": true,
-      "typo3\/cms-composer-installers": true,
-      "phpstan\/extension-installer": true
+      "typo3\/cms-composer-installers": true
     },
     "bin-dir": ".Build\/bin",
     "preferred-install": {
@@ -79,9 +79,9 @@
     ],
     "develop": [
       "Composer\\Config::disableProcessTimeout",
-      ".Build/bin/php-watcher foo --exec 'composer run develop:deploy' --signal SIGTERM --ignore .Build --ext=php,yaml,html,txt,typoscript,css,js,xlf"
+      ".Build\/bin\/php-watcher foo --exec 'composer run develop:deploy' --signal SIGTERM --ignore .Build --ext=php,yaml,html,txt,typoscript,css,js,xlf"
     ],
-    "develop:deploy": "[ -f ./.deploy.sh ] && ./.deploy.sh",
+    "develop:deploy": "[ -f .\/.deploy.sh ] && .\/.deploy.sh",
     "git:precommit": [
       "echo 'running precommit checks...'",
       "@lint:php:onlyerrors",
@@ -98,8 +98,8 @@
     "lint:php": "find *.php Classes Configuration Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
     "lint:php-cs-fixer": "php-cs-fixer fix",
     "lint:php-cs-fixer:dry-run": "php-cs-fixer fix --dry-run --using-cache=no --diff",
-    "lint:php-cs-fixer:dry-run:onlyerrors": "php-cs-fixer fix --dry-run --using-cache=no --diff > /dev/null",
-    "lint:php:onlyerrors": "find *.php Classes -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l > /dev/null",
+    "lint:php-cs-fixer:dry-run:onlyerrors": "php-cs-fixer fix --dry-run --using-cache=no --diff > \/dev\/null",
+    "lint:php:onlyerrors": "find *.php Classes -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l > \/dev\/null",
     "lint:phpcbf": "phpcbf Classes",
     "lint:phpcs": "@lint:phpcbf",
     "lint:phpcs:dry-run": "phpcs Classes",
