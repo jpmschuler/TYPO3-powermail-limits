@@ -27,7 +27,7 @@
 				<source>Current allocation: %s</source>
 			</trans-unit>
 			<trans-unit id="form.submissionlimitwarning.text.addon.waitlist" resname="form.submissionlimitwarning.text.addon.waitlist">
-				<source>Even if the limit is reached, you still can submit to the waitlist.</source>
+				<source>If the limit is reached, you still can submit to the waitlist.</source>
 			</trans-unit>
 			<trans-unit id="form.submissionspercentage.0" resname="form.submissionspercentage.0">
 				<source>enough free slots</source>

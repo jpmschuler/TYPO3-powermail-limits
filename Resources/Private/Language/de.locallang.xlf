@@ -35,8 +35,8 @@
 				<target>Aktuelle Belegung: %s</target>
 			</trans-unit>
 			<trans-unit id="form.submissionlimitwarning.text.addon.waitlist" resname="form.submissionlimitwarning.text.addon.waitlist">
-				<source>Even if the limit is reached, you still can submit to the waitlist.</source>
-				<target>Selbst wenn die Begrenzung erreicht ist, besteht immer noch die Möglichkeit sich für die Warteliste einzutragen.</target>
+				<source>If the limit is reached, you still can submit to the waitlist.</source>
+				<target>Wenn die Begrenzung erreicht ist, besteht immer noch die Möglichkeit sich für die Warteliste einzutragen.</target>
 			</trans-unit>
 			<trans-unit id="form.submissionspercentage.0" resname="form.submissionspercentage.0">
 				<source>enough free slots</source>
