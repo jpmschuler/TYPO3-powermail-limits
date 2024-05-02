@@ -1,6 +1,0 @@
-#tx_powermail.flexForm.addField.settings\.flexform\.main\.submissionlimit._sheet = main
-#tx_powermail.flexForm.addField.settings\.flexform\.main\.submissionlimit.label = Submission Limit
-#tx_powermail.flexForm.addField.settings\.flexform\.main\.submissionlimit.config.type = input
-#tx_powermail.flexForm.addField.settings\.flexform\.main\.submissionlimit.config.eval = int
-
-#tx_powermail.flexForm.type.addFieldOptions.submissionlimit = LLL:EXT:powermail_limits/Resources/Private/Language/locallang.xlf:powermail.submissionlimit
