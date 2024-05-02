@@ -1,7 +1,5 @@
 paths:
-  - Configuration/PageTSconfig/
   - Configuration/TypoScript/
-  - Configuration/UserTSconfig/
 
 sniffs:
   - class: Indentation
