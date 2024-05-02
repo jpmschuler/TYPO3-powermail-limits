@@ -1,5 +1,5 @@
 {
-  "name": "jpmschuler\/powermail-limits",
+  "name": "jpmschuler/powermail-limits",
   "description": "TYPO3 EXT:powermail_limits - Addition to EXT:powermail which allows limits for form submissions",
   "license": "GPL-2.0-or-later",
   "type": "typo3-cms-extension",
@@ -11,28 +11,29 @@
     }
   ],
   "require": {
-    "php": "^8.0 || ^8.2",
-    "in2code\/powermail": "^12.4.0",
-    "typo3\/cms-core": "^11.5.26 || ^12.4",
-    "typo3\/cms-frontend": "^11.5.26 || ^12.4"
+    "php": "^8.0",
+    "in2code/powermail": "^12.4.0",
+    "typo3/cms-core": "^11.5.26 || ^12.4",
+    "typo3/cms-frontend": "^11.5.26 || ^12.4"
   },
   "require-dev": {
-    "ergebnis\/composer-normalize": "^2.19.0",
-    "friendsofphp\/php-cs-fixer": "^3.4.0",
-    "helmich\/typo3-typoscript-lint": "^3.1.0",
-    "jangregor\/phpstan-prophecy": "^1.0.0",
-    "phpstan\/extension-installer": "^1.1.0",
-    "phpstan\/phpstan": "^1.6.2",
-    "roave\/security-advisories": "dev-latest",
-    "saschaegerer\/phpstan-typo3": "^1.1.2",
-    "seld\/jsonlint": "^1.9.0",
-    "squizlabs\/php_codesniffer": "^3.6.2",
-    "ssch\/typo3-rector": "^1",
-    "typo3\/tailor": "^1.5"
+    "ergebnis/composer-normalize": "^2.19.0",
+    "friendsofphp/php-cs-fixer": "^3.4.0",
+    "helmich/typo3-typoscript-lint": "^3.1.0",
+    "jangregor/phpstan-prophecy": "^1.0.0",
+    "phpstan/extension-installer": "^1.1.0",
+    "phpstan/phpstan": "^1.6.2",
+    "roave/security-advisories": "dev-latest",
+    "saschaegerer/phpstan-typo3": "^1.1.2",
+    "seld/jsonlint": "^1.9.0",
+    "squizlabs/php_codesniffer": "^3.6.2",
+    "ssch/typo3-rector": "^2.5.0",
+    "typo3/cms-composer-installers": "^4.0.0-RC1 || ^5.0.0",
+    "typo3/tailor": "^1.5"
   },
   "autoload": {
     "psr-4": {
-      "Jpmschuler\\PowermailLimits\\": "Classes\/"
+      "Jpmschuler\\PowermailLimits\\": "Classes/"
     }
   },
   "autoload-dev": {
@@ -42,28 +43,25 @@
   },
   "config": {
     "allow-plugins": {
-      "bk2k\/configuration-installer": true,
-      "ergebnis\/composer-normalize": true,
-      "phpstan\/extension-installer": true,
-      "typo3\/class-alias-loader": true,
-      "typo3\/cms-composer-installers": true
+      "bk2k/configuration-installer": true,
+      "ergebnis/composer-normalize": true,
+      "phpstan/extension-installer": true,
+      "typo3/class-alias-loader": true,
+      "typo3/cms-composer-installers": true
     },
-    "bin-dir": ".Build\/bin",
-    "preferred-install": {
-      "jpmschuler\/typo3-extdev-helper": "source"
-    },
+    "bin-dir": ".Build/bin",
     "sort-packages": true,
-    "vendor-dir": ".Build\/vendor"
+    "vendor-dir": ".Build/vendor"
   },
   "extra": {
     "codequality": {
       "phpstan-level": "6",
       "typo3-deprecations": "11"
     },
-    "typo3\/cms": {
+    "typo3/cms": {
       "app-dir": ".Build",
       "extension-key": "powermail_limits",
-      "web-dir": ".Build\/public"
+      "web-dir": ".Build/public"
     }
   },
   "scripts": {
@@ -79,27 +77,30 @@
     ],
     "develop": [
       "Composer\\Config::disableProcessTimeout",
-      ".Build\/bin\/php-watcher foo --exec 'composer run develop:deploy' --signal SIGTERM --ignore .Build --ext=php,yaml,html,txt,typoscript,css,js,xlf"
+      "npx onchange -k -v ./** -e '.Build/' -- composer run develop:deploy"
     ],
-    "develop:deploy": "[ -f .\/.deploy.sh ] && .\/.deploy.sh",
+    "develop:deploy": "[ -f ./.deploy.sh ] && ./.deploy.sh",
     "git:precommit": [
       "echo 'running precommit checks...'",
       "@lint:php:onlyerrors",
-      "@lint:php-cs-fixer:dry-run:onlyerrors",
-      "@lint:phpcs:dry-run:onlyerrors",
-      "@lint:phpcpd:onlyerrors"
+      "@lint:php-cs-fixer:dry-run",
+      "@lint:phpcs:dry-run",
+      "npx prettier --check .",
+      "@lint:xliff:onlyerrors"
     ],
     "lint:all": [
       "@lint:php",
       "@lint:php-cs-fixer:dry-run",
       "@lint:phpcs:dry-run",
-      "@lint:phpstan"
+      "@lint:phpstan",
+      "@lint:typoscript",
+      "@lint:xliff"
     ],
     "lint:php": "find *.php Classes Configuration Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
     "lint:php-cs-fixer": "php-cs-fixer fix",
     "lint:php-cs-fixer:dry-run": "php-cs-fixer fix --dry-run --using-cache=no --diff",
-    "lint:php-cs-fixer:dry-run:onlyerrors": "php-cs-fixer fix --dry-run --using-cache=no --diff > \/dev\/null",
-    "lint:php:onlyerrors": "find *.php Classes -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l > \\\\/dev\\\\/null",
+    "lint:php-cs-fixer:dry-run:onlyerrors": "php-cs-fixer fix --dry-run --using-cache=no --diff > /dev/null",
+    "lint:php:onlyerrors": "find *.php Classes -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l > /dev/null",
     "lint:phpcbf": "phpcbf Classes",
     "lint:phpcs": "@lint:phpcbf",
     "lint:phpcs:dry-run": "phpcs Classes",
@@ -108,7 +109,8 @@
     "lint:phpstan:baseline": "phpstan --level=5 --memory-limit=1G analyse --generate-baseline",
     "lint:phpstan:ci": "phpstan --level=5 --memory-limit=1G --no-progress analyse",
     "lint:typoscript": "typoscript-lint",
-    "post-update": "@post-install",
+    "lint:xliff": "xmllint --schema ./Tests/Resources/xliff-core-1.2-strict.xsd --noout $(find Resources/Private/Language -name '*.xlf')",
+    "lint:xliff:onlyerrors": "xmllint --schema ./Tests/Resources/xliff-core-1.2-strict.xsd --noout $(find Resources/Private/Language -name '*.xlf') > /dev/null",
     "prepare-release": [
       "rm .gitignore",
       "rm -rf .Build",
@@ -128,11 +130,11 @@
       "rm rector.php"
     ],
     "rector": [
-      "rector process --config=rectorphp  ",
+      "rector process --config=rector.php  ",
       "@lint:php-cs-fixer"
     ],
-    "rector:dry-run": "rector process --config=rectorphp --dry-run --  ",
-    "rector:dry-run:ci": "rector process --config=rectorphp --dry-run --output-format json --  > report.rector.json",
+    "rector:dry-run": "rector process --config=rector.php --dry-run --  ",
+    "rector:dry-run:ci": "rector process --config=rector.php --dry-run --output-format json --  > report.rector.json",
     "rector:force": "rector process ",
     "test": [
       "@lint:php-cs-fixer"

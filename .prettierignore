@@ -1,0 +1,3 @@
+**/*.min.*
+composer.json
+composer.lock

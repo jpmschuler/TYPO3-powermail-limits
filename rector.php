@@ -1,45 +1,47 @@
 <?php
+
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\Core\ValueObject\PhpVersion;
 use Rector\PostRector\Rector\NameImportingPostRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
+use Rector\ValueObject\PhpVersion;
+use Ssch\TYPO3Rector\CodeQuality\General\ConvertImplicitVariablesToExplicitGlobalsRector;
+use Ssch\TYPO3Rector\CodeQuality\General\ExtEmConfRector;
 use Ssch\TYPO3Rector\Configuration\Typo3Option;
-use Ssch\TYPO3Rector\Rector\General\ConvertImplicitVariablesToExplicitGlobalsRector;
-use Ssch\TYPO3Rector\Rector\General\ExtEmConfRector;
 use Ssch\TYPO3Rector\Set\Typo3LevelSetList;
+use Ssch\TYPO3Rector\Set\Typo3SetList;
 
-return static function (RectorConfig $rectorConfig): void {
-    $parameters = $rectorConfig->parameters();
-    $parameters->set(Typo3Option::TYPOSCRIPT_INDENT_SIZE, 2);
-    $rectorConfig->import(Typo3LevelSetList::UP_TO_TYPO3_10);
-    $rectorConfig->phpVersion(PhpVersion::PHP_74);
-    $rectorConfig->importNames();
-    $rectorConfig->skip([
+return RectorConfig::configure()
+    ->withPaths([
+        __DIR__ . '/Classes',
+        __DIR__ . '/Configuration',
+        __DIR__ . '/Tests',
+        __DIR__ . '/ext_localconf.php'
+    ])
+    ->withPhpVersion(PhpVersion::PHP_81)
+    ->withSets([
+        Typo3SetList::CODE_QUALITY,
+        Typo3SetList::GENERAL,
+        Typo3LevelSetList::UP_TO_TYPO3_11,
+    ])
+    ->withPHPStanConfigs([
+        Typo3Option::PHPSTAN_FOR_RECTOR_PATH
+    ])
+    ->withRules([
+        AddVoidReturnTypeWhereNoReturnRector::class,
+        ConvertImplicitVariablesToExplicitGlobalsRector::class,
+    ])
+    ->withConfiguredRule(ExtEmConfRector::class, [
+        ExtEmConfRector::PHP_VERSION_CONSTRAINT => '8.1.0-8.2.99',
+        ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '12.4.0-12.4.99',
+        ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => []
+    ])
+    ->withSkip([
+        __DIR__ . '/.Build/',
+        __DIR__ . '/**/Configuration/ExtensionBuilder/*',
         NameImportingPostRector::class => [
             'ClassAliasMap.php',
-            'ext_localconf.php',
-            'ext_emconf.php',
-            'ext_tables.php',
-            'Configuration/TCA/*',
-            'Configuration/TCA/Overrides/*',
-            'Configuration/RequestMiddlewares.php',
-            'Configuration/Commands.php',
-            'Configuration/AjaxRoutes.php',
-            'Configuration/Extbase/Persistence/Classes.php',
-        ],
-        __DIR__ . '/**/Resources/**/node_modules/*',
-        __DIR__ . '/**/Resources/**/NodeModules/*',
-        __DIR__ . '/**/Resources/**/BowerComponents/*',
-        __DIR__ . '/**/Resources/**/bower_components/*',
-        __DIR__ . '/**/Resources/**/build/*',
-        __DIR__ . '/.gitlab',
-        __DIR__ . '/.github',
-        __DIR__ . '/.Build'
-    ]);
-
-    $rectorConfig->rule(ConvertImplicitVariablesToExplicitGlobalsRector::class);
-    $rectorConfig->ruleWithConfiguration(ExtEmConfRector::class, [
-        ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => []
-    ]);
-};
+        ]
+    ])
+    ;
