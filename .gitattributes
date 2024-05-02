@@ -1,5 +1,4 @@
 /.Build export-ignore
-/.DS_store export-ignore
 /.codeclimate.phpmd.typo3.xml export-ignore
 /.codeclimate.yml export-ignore
 /.constants.php export-ignore
@@ -12,7 +11,9 @@
 /.gitlab-ci.yml export-ignore
 /.php-cs-fixer.php export-ignore
 /.phpcs.xml export-ignore
-/Gitversion.yml export-ignore
+/.prettierignore export-ignore
+/Configuration/UnitTests.xml export-ignore
+/GitVersion.yml export-ignore
 /README.md export-ignore
 /TER-releases export-ignore
 /Tests export-ignore
