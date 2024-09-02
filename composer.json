@@ -11,10 +11,10 @@
     }
   ],
   "require": {
-    "php": "^7.4 || ^8.0",
-    "in2code\/powermail": "^10.0.0",
-    "typo3\/cms-core": "^11.5.26",
-    "typo3\/cms-frontend": "^11.5.26"
+    "php": "^7.4 || ^8.0 || ^8.2",
+    "in2code\/powermail": "^12.4.0",
+    "typo3\/cms-core": "^11.5.26 || ^12.4",
+    "typo3\/cms-frontend": "^11.5.26 || ^12.4"
   },
   "require-dev": {
     "ergebnis\/composer-normalize": "^2.19.0",
