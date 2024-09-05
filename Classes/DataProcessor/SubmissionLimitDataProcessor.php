@@ -8,9 +8,6 @@ use In2code\Powermail\Domain\Model\Field;
 use Jpmschuler\PowermailLimits\Domain\Model\FormWithSubmissionLimit;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
-/**
- * Class DoSomethingDataProcessor
- */
 class SubmissionLimitDataProcessor extends AbstractDataProcessor
 {
     /**

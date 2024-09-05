@@ -1,4 +1,5 @@
 <?php
+
 $EM_CONF[$_EXTKEY] = [
     'title' => 'powermail_limits',
     'description' => 'Addition to EXT:powermail which allows limits for form submissions',

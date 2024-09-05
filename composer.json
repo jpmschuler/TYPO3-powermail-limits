@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "php": "^7.4 || ^8.0 || ^8.2",
+    "php": "^8.0 || ^8.2",
     "in2code\/powermail": "^12.4.0",
     "typo3\/cms-core": "^11.5.26 || ^12.4",
     "typo3\/cms-frontend": "^11.5.26 || ^12.4"
@@ -99,7 +99,7 @@
     "lint:php-cs-fixer": "php-cs-fixer fix",
     "lint:php-cs-fixer:dry-run": "php-cs-fixer fix --dry-run --using-cache=no --diff",
     "lint:php-cs-fixer:dry-run:onlyerrors": "php-cs-fixer fix --dry-run --using-cache=no --diff > \/dev\/null",
-    "lint:php:onlyerrors": "find *.php Classes -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l > \/dev\/null",
+    "lint:php:onlyerrors": "find *.php Classes -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l > \\\\/dev\\\\/null",
     "lint:phpcbf": "phpcbf Classes",
     "lint:phpcs": "@lint:phpcbf",
     "lint:phpcs:dry-run": "phpcs Classes",
@@ -128,12 +128,12 @@
       "rm rector.php"
     ],
     "rector": [
-      "rector process --config=rector.php . ",
+      "rector process --config=rectorphp  ",
       "@lint:php-cs-fixer"
     ],
-    "rector:dry-run": "rector process --config=rector.php --dry-run --  .",
-    "rector:dry-run:ci": "rector process --config=rector.php --dry-run --output-format json -- . > report.rector.json",
-    "rector:force": "rector process .",
+    "rector:dry-run": "rector process --config=rectorphp --dry-run --  ",
+    "rector:dry-run:ci": "rector process --config=rectorphp --dry-run --output-format json --  > report.rector.json",
+    "rector:force": "rector process ",
     "test": [
       "@lint:php-cs-fixer"
     ],

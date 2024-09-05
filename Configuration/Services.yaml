@@ -1,0 +1,20 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Jpmschuler\PowermailLimits\:
+      resource: '../Classes/*'
+
+  Jpmschuler\PowermailLimits\EventListener\AddBodyPrefixHeaderAndTextToView:
+    tags:
+      - name: event.listener
+        identifier: 'addBodyAndPrefixHeaderAndTextToView'
+
+
+  Jpmschuler\PowermailLimits\EventListener\AddSubjectPrefixToMail:
+    tags:
+      - name: event.listener
+        identifier: 'addSubjectPrefixToMail'
+
