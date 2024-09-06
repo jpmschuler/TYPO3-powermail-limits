@@ -1,5 +1,7 @@
 <?php
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
 defined('TYPO3') || die();
 
 (static function () {
@@ -46,6 +48,6 @@ defined('TYPO3') || die();
 
     ];
 
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tx_powermail_domain_model_form', $formsTca);
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToAllPalettesOfField('tx_powermail_domain_model_form', 'title', 'submissionlimit,haswaitlist,showsubmissionsfullpercentage', 'after:title');
+    ExtensionManagementUtility::addTCAcolumns('tx_powermail_domain_model_form', $formsTca);
+    ExtensionManagementUtility::addFieldsToAllPalettesOfField('tx_powermail_domain_model_form', 'title', 'submissionlimit,haswaitlist,showsubmissionsfullpercentage', 'after:title');
 })();

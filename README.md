@@ -4,8 +4,7 @@
 [![Latest Packagist version](https://shields.io/packagist/v/jpmschuler/powermail-limits?label=Packagist&logo=packagist&logoColor=white)](https://packagist.org/packages/jpmschuler/powermail-limits)
 ![Total downloads](https://typo3-badges.dev/badge/powermail_limits/downloads/shields.svg)
 
-![Supported TYPO3 versions](https://shields.io/endpoint?label=typo3&url=https://typo3-badges.dev/badge/powermail_limits/typo3/shields)
-![Supported PHP versions](https://shields.io/packagist/php-v/jpmschuler/powermail-limits?logo=php)
+![Supported TYPO3 versions](https://shields.io/endpoint?label=typo3&url=https://typo3-badges.dev/badge/powermail/typo3/shields)
 [![Current CI health](https://github.com/jpmschuler/TYPO3-powermail-limits/actions/workflows/ci.yml/badge.svg)](https://github.com/jpmschuler/TYPO3-powermail-limits/actions/workflows/ci.yml)
 
 
@@ -15,9 +14,9 @@ This extension allows you to set a submission limit for a TYPO3 EXT:powermail fo
 
 # Compatibility
 
-- TYPO3: ^11
-- PHP: ^7.4
-- EXT:powermail ^10
+- TYPO3: ^12
+- PHP: ^8.0 (tested with 8.2)
+- EXT:powermail ^12.4.0
 
 # Installation
 
