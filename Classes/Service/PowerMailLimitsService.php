@@ -11,7 +11,7 @@ class PowerMailLimitsService
 {
     const EXTENSION_KEY = 'powermail_limits';
 
-    public function addSubjectPrefixToMail(FormWithSubmissionLimit $form, MailMessage $message): void
+    public function getNewMailMessageWithSubjectPrefix(FormWithSubmissionLimit $form, MailMessage $message): MailMessage
     {
         $subjectPrefix = '';
 
@@ -22,10 +22,11 @@ class PowerMailLimitsService
         }
 
         $subject = $subjectPrefix . $message->getSubject();
-        $message->setSubject($subject);
+
+        return $message->setSubject($subject);
     }
 
-    public function addBodyPrefixHeaderAndTextToView(FormWithSubmissionLimit $form, StandaloneView $standaloneView, array $email)
+    public function getNewViewWithBodyPrefix(FormWithSubmissionLimit $form, StandaloneView $standaloneView, array $email): StandaloneView
     {
         $bodyPrefixHeader = '';
         $bodyPrefixText = '';
@@ -41,6 +42,8 @@ class PowerMailLimitsService
         $bodyPrefix = sprintf('<p><strong>%s</strong></p><p>%s</p><hr>', $bodyPrefixHeader, $bodyPrefixText);
         $email['rteBody'] = $bodyPrefix . $email['rteBody'];
         $standaloneView->assign('powermail_rte', $email['rteBody']);
+
+        return $standaloneView;
     }
 
     private function getTranslation(string $key): ?string

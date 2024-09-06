@@ -26,6 +26,8 @@ final class AddBodyPrefixHeaderAndTextToView
         if (!$form instanceof FormWithSubmissionLimit) {
             return;
         }
-        $this->powerMailLimitsService->addBodyPrefixHeaderAndTextToView($form, $standaloneView, $email);
+
+        $standaloneView = $this->powerMailLimitsService->getNewViewWithBodyPrefix($form, $standaloneView, $email);
+        $event->setStandaloneView($standaloneView);
     }
 }

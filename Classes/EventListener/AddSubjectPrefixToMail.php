@@ -26,6 +26,7 @@ final class AddSubjectPrefixToMail
             return;
         }
 
-        $this->powerMailLimitsService->addSubjectPrefixToMail($form, $message);
+        $message = $this->powerMailLimitsService->getNewMailMessageWithSubjectPrefix($form, $message);
+        $event->setMailMessage($message);
     }
 }
