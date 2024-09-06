@@ -102,7 +102,7 @@ jobs:
       - name: Composer install
         uses: php-actions/composer@v6
         with:
-          args: --ignore-platform-req=ext-gd --ignore-platform-req=ext-pcntl --ignore-platform-req=ext-zip
+          args: --ignore-platform-req=ext-gd --ignore-platform-req=ext-pcntl --ignore-platform-req=ext-zip --ignore-platform-req=ext-intl
           php_version: "8.1"
       - name: "Create new tag, updating optional version files"
         run: |
