@@ -26,7 +26,7 @@ class PowerMailLimitsService
         return $message->setSubject($subject);
     }
 
-    public function addBodyPrefixHeaderAndTextToView(
+    public function getNewViewWithBodyPrefix(
         FormWithSubmissionLimit $form,
         StandaloneView $standaloneView,
         array $email
