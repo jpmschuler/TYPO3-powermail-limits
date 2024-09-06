@@ -1,2 +1,2 @@
 include:
-  - '/.gitlab/.gitlab-ci.yml'
+  - "/.gitlab/.gitlab-ci.yml"

@@ -1,4 +1,3 @@
-
 [![TYPO3 extension powermail_limits](https://shields.io/endpoint?label=EXT&url=https://typo3-badges.dev/badge/powermail_limits/extension/shields)](https://extensions.typo3.org/extension/powermail_limits)
 [![Latest TER version](https://shields.io/endpoint?label=TER&url=https://typo3-badges.dev/badge/powermail_limits/version/shields)](https://extensions.typo3.org/extension/powermail_limits)
 [![Latest Packagist version](https://shields.io/packagist/v/jpmschuler/powermail-limits?label=Packagist&logo=packagist&logoColor=white)](https://packagist.org/packages/jpmschuler/powermail-limits)
@@ -7,16 +6,15 @@
 ![Supported TYPO3 versions](https://shields.io/endpoint?label=typo3&url=https://typo3-badges.dev/badge/powermail/typo3/shields)
 [![Current CI health](https://github.com/jpmschuler/TYPO3-powermail-limits/actions/workflows/ci.yml/badge.svg)](https://github.com/jpmschuler/TYPO3-powermail-limits/actions/workflows/ci.yml)
 
-
 # EXT:powermail_limits
 
 This extension allows you to set a submission limit for a TYPO3 EXT:powermail form
 
 # Compatibility
 
-- TYPO3: ^12
-- PHP: ^8.0 (tested with 8.2)
-- EXT:powermail ^12.4.0
+-   TYPO3: ^12
+-   PHP: ^8.0 (tested with 8.2)
+-   EXT:powermail ^12.4.0
 
 # Installation
 
@@ -26,9 +24,9 @@ This extension allows you to set a submission limit for a TYPO3 EXT:powermail fo
 
 A form gets 3 new fields
 
-- `has submission limit`: enable and enter a max submission limit in order to enable this extension for a form
-- `has waiting list`: should the form be still available after submissions are full to create a waitlist
-- `show allocation percentage`: should there be an indicator for how many slots are left
+-   `has submission limit`: enable and enter a max submission limit in order to enable this extension for a form
+-   `has waiting list`: should the form be still available after submissions are full to create a waitlist
+-   `show allocation percentage`: should there be an indicator for how many slots are left
 
 After enabling a submission limit the form will get a new first "page" (or fieldset) prepended with an infobox showing
 there is a limit, if that limit is reached and if a waiting list exists.
@@ -71,9 +69,9 @@ form.submissionspercentage.90: Warning! Only a few slots available
 
 # ToDo
 
-- [ ] override backend module mail entry subject (currently the invalid and waitlist prefixes aren't saved)
-- [ ] override answer page with visual warning prefix
-- [ ] add backend powermail module deep link to limit reached mail
+-   [ ] override backend module mail entry subject (currently the invalid and waitlist prefixes aren't saved)
+-   [ ] override answer page with visual warning prefix
+-   [ ] add backend powermail module deep link to limit reached mail
 
 # Preview
 

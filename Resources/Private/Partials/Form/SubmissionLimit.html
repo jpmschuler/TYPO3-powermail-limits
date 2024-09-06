@@ -1,46 +1,46 @@
 <f:if condition="{form.submissionlimit}">
-    <fieldset class="powermail_fieldset powermail_fieldset_limit">
-        <legend class="powermail_legend"> <f:translate key="form.submissionlimit.legend" extensionName="powermail_limits"/></legend>
-        <f:form.hidden name="submissionlimitwasmentioned" value="1"/>
-        <f:if condition="{form.regularsubmissionspossible}">
-            <div class="alert alert-info">
-                <h2>
-                    <f:translate key="form.submissionlimitwarning.header" extensionName="powermail_limits"/>
-                </h2>
-                <p>
-                    <f:translate key="form.submissionlimitwarning.text" extensionName="powermail_limits"/>
-                </p>
-                <f:if condition="{form.haswaitlist}">
-                    <p>
-                        <f:translate key="form.submissionlimitwarning.text.addon.waitlist" extensionName="powermail_limits"/>
-                    </p>
-                </f:if>
-                <f:if condition="{form.showsubmissionsfullpercentage}">
-                    <f:variable name="currentPercentageLabel">form.submissionspercentage.{form.submissionsfullpercentage}</f:variable>
-                    <f:variable name="currentPercentage">{f:translate(key: '{currentPercentageLabel}', extensionName: 'powermail_limits', default: 'unknown')}</f:variable>
-                    <p><f:translate key="form.submissionlimitwarning.text.addon.percentage" extensionName="powermail_limits" arguments="{0:'{currentPercentage}'}" /></p>
-                </f:if>
-            </div>
+  <fieldset class="powermail_fieldset powermail_fieldset_limit">
+    <legend class="powermail_legend"><f:translate key="form.submissionlimit.legend" extensionName="powermail_limits" /></legend>
+    <f:form.hidden name="submissionlimitwasmentioned" value="1" />
+    <f:if condition="{form.regularsubmissionspossible}">
+      <div class="alert alert-info">
+        <h2>
+          <f:translate key="form.submissionlimitwarning.header" extensionName="powermail_limits" />
+        </h2>
+        <p>
+          <f:translate key="form.submissionlimitwarning.text" extensionName="powermail_limits" />
+        </p>
+        <f:if condition="{form.haswaitlist}">
+          <p>
+            <f:translate key="form.submissionlimitwarning.text.addon.waitlist" extensionName="powermail_limits" />
+          </p>
         </f:if>
-        <f:if condition="!{form.regularsubmissionspossible} && {form.waitlistsubmissionpossible}">
-            <div class="alert alert-danger">
-                <h2>
-                    <f:translate key="form.onlywaitlistwarning.header" extensionName="powermail_limits"/>
-                </h2>
-                <p>
-                    <f:translate key="form.onlywaitlistwarning.text" extensionName="powermail_limits"/>
-                </p>
-            </div>
+        <f:if condition="{form.showsubmissionsfullpercentage}">
+          <f:variable name="currentPercentageLabel">form.submissionspercentage.{form.submissionsfullpercentage}</f:variable>
+          <f:variable name="currentPercentage">{f:translate(key: '{currentPercentageLabel}', extensionName: 'powermail_limits', default: 'unknown')}</f:variable>
+          <p><f:translate key="form.submissionlimitwarning.text.addon.percentage" extensionName="powermail_limits" arguments="{0:'{currentPercentage}'}" /></p>
         </f:if>
-        <f:if condition="!{form.regularsubmissionspossible} && !{form.waitlistsubmissionpossible}">
-            <div class="alert alert-danger">
-                <h2>
-                    <f:translate key="form.nosubmissionpossible.header" extensionName="powermail_limits"/>
-                </h2>
-                <p>
-                    <f:translate key="form.nosubmissionpossible.text" extensionName="powermail_limits"/>
-                </p>
-            </div>
-        </f:if>
-    </fieldset>
+      </div>
+    </f:if>
+    <f:if condition="!{form.regularsubmissionspossible} && {form.waitlistsubmissionpossible}">
+      <div class="alert alert-danger">
+        <h2>
+          <f:translate key="form.onlywaitlistwarning.header" extensionName="powermail_limits" />
+        </h2>
+        <p>
+          <f:translate key="form.onlywaitlistwarning.text" extensionName="powermail_limits" />
+        </p>
+      </div>
+    </f:if>
+    <f:if condition="!{form.regularsubmissionspossible} && !{form.waitlistsubmissionpossible}">
+      <div class="alert alert-danger">
+        <h2>
+          <f:translate key="form.nosubmissionpossible.header" extensionName="powermail_limits" />
+        </h2>
+        <p>
+          <f:translate key="form.nosubmissionpossible.text" extensionName="powermail_limits" />
+        </p>
+      </div>
+    </f:if>
+  </fieldset>
 </f:if>

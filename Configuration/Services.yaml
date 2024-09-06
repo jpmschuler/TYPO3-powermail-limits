@@ -5,16 +5,14 @@ services:
     public: false
 
   Jpmschuler\PowermailLimits\:
-      resource: '../Classes/*'
+    resource: "../Classes/*"
 
   Jpmschuler\PowermailLimits\EventListener\AddBodyPrefixHeaderAndTextToView:
     tags:
       - name: event.listener
-        identifier: 'addBodyAndPrefixHeaderAndTextToView'
-
+        identifier: "addBodyAndPrefixHeaderAndTextToView"
 
   Jpmschuler\PowermailLimits\EventListener\AddSubjectPrefixToMail:
     tags:
       - name: event.listener
-        identifier: 'addSubjectPrefixToMail'
-
+        identifier: "addSubjectPrefixToMail"

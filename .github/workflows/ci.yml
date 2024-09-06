@@ -67,7 +67,7 @@ jobs:
   calculate-version:
     name: "calculating next SemVer"
     runs-on: ubuntu-22.04
-    needs: [ php-lint,php-codequality ]
+    needs: [php-lint, php-codequality]
     if: github.ref == 'refs/heads/main'
     outputs:
       majorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }} # To use an output in another job, you have to map it to a job output.
@@ -80,7 +80,7 @@ jobs:
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0
         with:
-          versionSpec: '5.x'
+          versionSpec: "5.x"
       - name: Determine GitVersion
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0
