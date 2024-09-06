@@ -13,8 +13,9 @@
   "require": {
     "php": "^8.0",
     "in2code/powermail": "^12.4.0",
-    "typo3/cms-core": "^11.5.26 || ^12.4",
-    "typo3/cms-frontend": "^11.5.26 || ^12.4"
+    "typo3/cms-core": "^12.4",
+    "typo3/cms-fluid": "^12.4",
+    "typo3/cms-frontend": "^12.4"
   },
   "require-dev": {
     "ergebnis/composer-normalize": "^2.19.0",
