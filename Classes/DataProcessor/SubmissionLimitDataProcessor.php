@@ -41,30 +41,30 @@ class SubmissionLimitDataProcessor extends AbstractDataProcessor
 
             $labelSubmissionLimit = LocalizationUtility::translate(
                 'form.submissionstatus',
-                'powermail_limits'
+                'PowermailLimits'
             );
 
             if ($form->isNewSubmissionForWaitlistProcessor()) {
                 $addToOutput[$labelSubmissionLimit] = LocalizationUtility::translate(
                     'form.submissionstatus.waitinglist',
-                    'powermail_limits'
+                    'PowermailLimits'
                 );
 
                 $subjectPrefix = LocalizationUtility::translate(
                     'mail.waitinglistsubmission.subjectprefix',
-                    'powermail_limits'
+                    'PowermailLimits'
                 );
                 $subject = $subjectPrefix . $mail->getSubject();
                 $mail->setSubject($subject);
             } elseif ($form->isNewSubmissionValid()) {
                 $addToOutput[$labelSubmissionLimit] = LocalizationUtility::translate(
                     'form.submissionstatus.valid',
-                    'powermail_limits'
+                    'PowermailLimits'
                 );
             } else {
                 $addToOutput[$labelSubmissionLimit] = LocalizationUtility::translate(
                     'form.submissionstatus.invalid',
-                    'powermail_limits'
+                    'PowermailLimits'
                 );
                 $mail->setHidden(true);
             }

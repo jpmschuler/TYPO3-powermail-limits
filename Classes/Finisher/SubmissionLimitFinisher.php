@@ -23,11 +23,11 @@ class SubmissionLimitFinisher extends AbstractFinisher
         if ($form->isLastSubmissionAllowed()) {
             $recipient = new Address($mail->getReceiverMail());
             $subject = sprintf(
-                LocalizationUtility::translate('mail.submissionlimitreached.subject', 'powermail_limits'),
+                LocalizationUtility::translate('mail.submissionlimitreached.subject', 'PowermailLimits'),
                 $form->getTitle()
             );
             $body = sprintf(
-                LocalizationUtility::translate('mail.submissionlimitreached.body', 'powermail_limits'),
+                LocalizationUtility::translate('mail.submissionlimitreached.body', 'PowermailLimits'),
                 $form->getTitle()
             );
 

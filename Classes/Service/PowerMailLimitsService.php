@@ -9,7 +9,7 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class PowerMailLimitsService
 {
-    const EXTENSION_KEY = 'powermail_limits';
+    public const EXTENSION_KEY = 'powermail_limits';
 
     public function getNewMailMessageWithSubjectPrefix(FormWithSubmissionLimit $form, MailMessage $message): MailMessage
     {
@@ -26,8 +26,11 @@ class PowerMailLimitsService
         return $message->setSubject($subject);
     }
 
-    public function getNewViewWithBodyPrefix(FormWithSubmissionLimit $form, StandaloneView $standaloneView, array $email): StandaloneView
-    {
+    public function addBodyPrefixHeaderAndTextToView(
+        FormWithSubmissionLimit $form,
+        StandaloneView $standaloneView,
+        array $email
+    ): StandaloneView {
         $bodyPrefixHeader = '';
         $bodyPrefixText = '';
 
@@ -48,6 +51,6 @@ class PowerMailLimitsService
 
     private function getTranslation(string $key): ?string
     {
-        return LocalizationUtility::translate($key, self::EXTENSION_KEY);
+        return LocalizationUtility::translate($key, 'PowermailLimits');
     }
 }

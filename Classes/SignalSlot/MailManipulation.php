@@ -23,14 +23,14 @@ class MailManipulation
         if ($form->isNewSubmissionForWaitlistMailManipulation()) {
             $subjectPrefix = LocalizationUtility::translate(
                 'mail.waitinglistsubmission.subjectprefix',
-                'powermail_limits'
+                'PowermailLimits'
             );
             $subject = $subjectPrefix . $message->getSubject();
             $message->setSubject($subject);
         } elseif (!$form->isNewSubmissionValid()) {
             $subjectPrefix = LocalizationUtility::translate(
                 'mail.invalidsubmission.subjectprefix',
-                'powermail_limits'
+                'PowermailLimits'
             );
             $subject = $subjectPrefix . $message->getSubject();
             $message->setSubject($subject);
@@ -52,11 +52,11 @@ class MailManipulation
         if ($form->isNewSubmissionForWaitlistMailManipulation()) {
             $bodyPrefixHeader = LocalizationUtility::translate(
                 'mail.waitinglistsubmission.bodyprefix.header',
-                'powermail_limits'
+                'PowermailLimits'
             );
             $bodyPrefixText = LocalizationUtility::translate(
                 'mail.waitinglistsubmission.bodyprefix.text',
-                'powermail_limits'
+                'PowermailLimits'
             );
             $bodyPrefix = sprintf('<p><strong>%s</strong></p><p>%s</p><hr>', $bodyPrefixHeader, $bodyPrefixText);
             $email['rteBody'] = $bodyPrefix . $email['rteBody'];
@@ -64,11 +64,11 @@ class MailManipulation
         } elseif (!$form->isNewSubmissionValid()) {
             $bodyPrefixHeader = LocalizationUtility::translate(
                 'mail.invalidsubmission.bodyprefix.header',
-                'powermail_limits'
+                'PowermailLimits'
             );
             $bodyPrefixText = LocalizationUtility::translate(
                 'mail.invalidsubmission.bodyprefix.text',
-                'powermail_limits'
+                'PowermailLimits'
             );
             $bodyPrefix = sprintf('<p><strong>%s</strong></p><p>%s</p><hr>', $bodyPrefixHeader, $bodyPrefixText);
             $email['rteBody'] = $bodyPrefix . $email['rteBody'];
