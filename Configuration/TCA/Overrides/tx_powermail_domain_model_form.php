@@ -26,9 +26,10 @@ defined('TYPO3') || die();
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => ''
+                        'label' => ''
                     ],
                 ],
+                'default' => 0,
             ],
         ],
         'showsubmissionsfullpercentage' => [
@@ -40,9 +41,10 @@ defined('TYPO3') || die();
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => ''
+                        'label' => ''
                     ],
                 ],
+                'default' => 0,
             ],
         ],
 
