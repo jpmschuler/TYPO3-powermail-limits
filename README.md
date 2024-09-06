@@ -12,9 +12,17 @@ This extension allows you to set a submission limit for a TYPO3 EXT:powermail fo
 
 # Compatibility
 
+v2.x of this Extension is compatible with 12LTS
+
 -   TYPO3: ^12
 -   PHP: ^8.0 (tested with 8.2)
 -   EXT:powermail ^12.4.0
+
+v1.x of this Extension is compatible with 11LTS
+
+-   TYPO3: ^11
+-   PHP: ^7.4 || ^8.0
+-   EXT:powermail ^10
 
 # Installation
 
