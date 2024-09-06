@@ -107,7 +107,7 @@
     "lint:phpcs:dry-run": "phpcs Classes",
     "lint:phpcs:dry-run:onlyerrors": "phpcs -n Classes",
     "lint:phpstan": "phpstan --level=5 --memory-limit=1G analyse",
-    "lint:phpstan:baseline": "phpstan --level=5 --memory-limit=1G analyse --generate-baseline",
+    "lint:phpstan:baseline": "phpstan --level=5 --memory-limit=1G analyse --generate-baseline --allow-empty-baseline",
     "lint:phpstan:ci": "phpstan --level=5 --memory-limit=1G --no-progress analyse",
     "lint:typoscript": "typoscript-lint",
     "lint:xliff": "xmllint --schema ./Tests/Resources/xliff-core-1.2-strict.xsd --noout $(find Resources/Private/Language -name '*.xlf')",
