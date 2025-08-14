@@ -14,15 +14,15 @@ This extension allows you to set a submission limit for a TYPO3 EXT:powermail fo
 
 v2.x of this Extension is compatible with 12LTS
 
--   TYPO3: ^12
--   PHP: ^8.0 (tested with 8.2)
--   EXT:powermail ^12.4.0
+- TYPO3: ^12
+- PHP: ^8.0 (tested with 8.2)
+- EXT:powermail ^12.4.0
 
 v1.x of this Extension is compatible with 11LTS
 
--   TYPO3: ^11
--   PHP: ^7.4 || ^8.0
--   EXT:powermail ^10
+- TYPO3: ^11
+- PHP: ^7.4 || ^8.0
+- EXT:powermail ^10
 
 # Installation
 
@@ -32,9 +32,9 @@ v1.x of this Extension is compatible with 11LTS
 
 A form gets 3 new fields
 
--   `has submission limit`: enable and enter a max submission limit in order to enable this extension for a form
--   `has waiting list`: should the form be still available after submissions are full to create a waitlist
--   `show allocation percentage`: should there be an indicator for how many slots are left
+- `has submission limit`: enable and enter a max submission limit in order to enable this extension for a form
+- `has waiting list`: should the form be still available after submissions are full to create a waitlist
+- `show allocation percentage`: should there be an indicator for how many slots are left
 
 After enabling a submission limit the form will get a new first "page" (or fieldset) prepended with an infobox showing
 there is a limit, if that limit is reached and if a waiting list exists.
@@ -77,9 +77,9 @@ form.submissionspercentage.90: Warning! Only a few slots available
 
 # ToDo
 
--   [ ] override backend module mail entry subject (currently the invalid and waitlist prefixes aren't saved)
--   [ ] override answer page with visual warning prefix
--   [ ] add backend powermail module deep link to limit reached mail
+- [ ] override backend module mail entry subject (currently the invalid and waitlist prefixes aren't saved)
+- [ ] override answer page with visual warning prefix
+- [ ] add backend powermail module deep link to limit reached mail
 
 # Preview
 

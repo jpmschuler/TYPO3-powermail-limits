@@ -11,11 +11,11 @@
     }
   ],
   "require": {
-    "php": "^8.0",
-    "in2code/powermail": "^12.4.0",
-    "typo3/cms-core": "^12.4",
-    "typo3/cms-fluid": "^12.4",
-    "typo3/cms-frontend": "^12.4"
+    "php": "^8.2",
+    "in2code/powermail": "^13",
+    "typo3/cms-core": "^13.4",
+    "typo3/cms-fluid": "^13.4",
+    "typo3/cms-frontend": "^13.4"
   },
   "require-dev": {
     "ergebnis/composer-normalize": "^2.19.0",
@@ -24,12 +24,10 @@
     "jangregor/phpstan-prophecy": "^1.0.0",
     "phpstan/extension-installer": "^1.1.0",
     "phpstan/phpstan": "^1.6.2",
-    "roave/security-advisories": "dev-latest",
     "saschaegerer/phpstan-typo3": "^1.1.2",
     "seld/jsonlint": "^1.9.0",
     "squizlabs/php_codesniffer": "^3.6.2",
     "ssch/typo3-rector": "^2.5.0",
-    "typo3/cms-composer-installers": "^4.0.0-RC1 || ^5.0.0",
     "typo3/tailor": "^1.5"
   },
   "autoload": {
@@ -57,10 +55,9 @@
   "extra": {
     "codequality": {
       "phpstan-level": "6",
-      "typo3-deprecations": "11"
+      "typo3-deprecations": "13"
     },
     "typo3/cms": {
-      "app-dir": ".Build",
       "extension-key": "powermail_limits",
       "web-dir": ".Build/public"
     }
