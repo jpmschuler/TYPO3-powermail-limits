@@ -65,26 +65,26 @@ jobs:
 
   calculate-version:
     name: "calculating next SemVer"
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     needs: [php-lint, php-codequality]
     if: github.ref == 'refs/heads/main'
     outputs:
       majorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }} # To use an output in another job, you have to map it to a job output.
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.PAT }}
           fetch-depth: 0
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0
+        uses: gittools/actions/gitversion/setup@v4.7
         with:
-          versionSpec: "5.x"
+          versionSpec: "6.4"
       - name: Determine GitVersion
         id: gitversion
-        uses: gittools/actions/gitversion/execute@v0
+        uses: gittools/actions/gitversion/execute@v4.7.0
         with:
-          useConfigFile: true
+          configFilePath: Tests/Resources/GitVersion.yml
       - name: Display GitVersion outputs
         run: |
           echo "LegacySemVer: ${{ steps.gitversion.outputs.legacySemVer }}"
@@ -102,7 +102,7 @@ jobs:
         uses: php-actions/composer@v6
         with:
           args: --ignore-platform-req=ext-gd --ignore-platform-req=ext-pcntl --ignore-platform-req=ext-zip --ignore-platform-req=ext-intl
-          php_version: "8.1"
+          php_version: "8.3"
       - name: "Create new tag, updating optional version files"
         run: |
           export GIT_LASTTAG="$(git describe --tags --abbrev=0)"
