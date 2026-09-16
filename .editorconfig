@@ -21,7 +21,7 @@ indent_style = tab
 # composer.json with composer normalize standards
 [composer.json]
 indent_style = space
-indent_size = 4
+indent_size = 2
 insert_final_newline = true
 
 # YAML-Files
