@@ -13,8 +13,9 @@ defined('TYPO3') || die();
             'config' => [
                 'type' => 'input',
                 'size' => 5,
-                'eval' => 'num,null',
+                'eval' => 'num',
                 'mode' => 'useOrOverridePlaceholder',
+                'nullable' => true,
             ],
         ],
         'haswaitlist' => [
